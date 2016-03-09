@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 /**
  * Created by labrador on 7/03/16.
  */
-public class DataAccessor<T> {
+public class DataAccessor {
     private DataSource ds;
 
     public DataAccessor(DataSource dataSource) {
@@ -35,8 +35,8 @@ public class DataAccessor<T> {
         }
     }
     
-    public boolean updateRows(String tableName, String[] fields, Strings[] value, ) {
-		
+    public int updateRows(String tableName, String[] fields, String[] value ) {
+	  return -1;	
 	}
 
     public String generateInsertStatement(String tableName, String[] fields) {
@@ -54,8 +54,9 @@ public class DataAccessor<T> {
 
     public String generateUpdateStatement(String tableName, String[] fields, String[] condition) {
         String fieldList = String.join("= ?,", fields);
+        fieldList += "=?"; //add by dany
         String conditionList = String.join("= ? AND", condition);
-
+        conditionList += "=?";
         return "UPDATE " + tableName
                 + " SET " + fieldList
                 + " WHERE " + conditionList;
