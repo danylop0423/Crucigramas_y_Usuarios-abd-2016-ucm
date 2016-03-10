@@ -4,69 +4,126 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Arrays;
+
 import javax.sql.DataSource;
 
-
-/**
- * Created by labrador on 7/03/16.
- */
 public class DataAccessor {
-    private DataSource ds;
 
-    public DataAccessor(DataSource dataSource) {
-        this.ds = dataSource;
-    }
-
-    public boolean insertRow(String tableName, String[] fields, Object[] values) {
-        String sql = this.generateInsertStatement(tableName, fields);
-
-        try(Connection con = ds.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
-            for (int i = 0; i < values.length; i++) {
-                pst.setObject(i + 1, values[i]);
-            }
-
-
-            int numRows = pst.executeUpdate();
-
-            return (numRows == 1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-    
-    public int updateRows(String tableName, String[] fields, String[] value ) {
-	  return -1;	
+   private DataSource ds;
+ 
+   public DataAccessor (DataSource dsource){
+		this.ds=dsource;
 	}
 
-    public String generateInsertStatement(String tableName, String[] fields) {
-        String fieldList = String.join(",", fields);
-        String[] marks = new String[fields.length];
+//INSERT:
+ private String generateInsertStatement(String tableName, String[] fields) {
+	 String fieldList = String.join(",",fields );
+	 String[] marks = new String[fields.length];
+	 Arrays.fill(marks, "?");
+	 String markList = String.join(",",marks );
+	 return "INSERT INTO " + tableName
+	 + " (" + fieldList + ") VALUES ("
+	 + markList + ")";
+ }
 
-        Arrays.fill(marks, "?");
+ public boolean insertRow(String tableName,String[] fields, Object[] values) {
+	
+	String sql = generateInsertStatement(tableName, fields);
+	try(Connection con = ds.getConnection();
+			PreparedStatement pst = con.prepareStatement(sql))
+    {
+		for (int i = 0; i < values.length; i++) {
+			pst.setObject(i + 1, values[i]);
+		  }
+		int numRows = pst.executeUpdate();
+		return (numRows == 1);
+	} catch (SQLException e) {
+		e.printStackTrace();
+		return false;
+	     }
+ }
 
-        String markList = String.join(",", marks);
+ 
+//UPDATE:
+ private String generateUpdateStatement(String tableName, String[] fields, 
+		 														String[] condFields) {
+	 String fieldMarked = String.join("=?,",fields );
+	 fieldMarked += "=?";
+    
+	 if(condFields == null){
+			return  "UPDATE " + tableName + " SET (" + fieldMarked + ")";
+		 }
+	 
+	 String condMarked = String.join("=? AND ",condFields );
+		condMarked += "=?";
+	 	 
+	 return "UPDATE " + tableName 
+			 + " SET (" + fieldMarked + ") WHERE ("
+			 + condMarked + ")";
+	}
 
-        return "INSERT INTO " + tableName
-                + " (" + fieldList + ") VALUES ("
-                + markList + ")";
-    }
+ 
+ public int updateRow(String tableName,String[] fields, Object[] values,
+		 				String[] condFields,Object[] condValues) {
+		
+	 	String sql = generateUpdateStatement(tableName,fields,condFields);
+		try(Connection con = ds.getConnection();
+				PreparedStatement pst = con.prepareStatement(sql))
+	    {
+			if(condFields != null){
+				int aux=0;
+				for (int i=0 ; i < values.length; i++) {
+					aux=i;
+					pst.setObject(i + 1, values[i]);			  
+				   }
+			
+				for ( int j=aux; j < (condValues.length+aux); j++) {
+					pst.setObject(j + 1, condValues[j]);
+				   }		
+		      }
+			int numRows = pst.executeUpdate();
+			return numRows;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		     }
+ }
 
-    public String generateUpdateStatement(String tableName, String[] fields, String[] condition) {
-        String fieldList = String.join("= ?,", fields);
-        fieldList += "=?"; //add by dany
-        String conditionList = String.join("= ? AND", condition);
-        conditionList += "=?";
-        return "UPDATE " + tableName
-                + " SET " + fieldList
-                + " WHERE " + conditionList;
-    }
+//DELETE
+ private String generateDeleteStatement(String tableName,String[] condFields) {		
+	 if(condFields == null){
+		return  "DELETE " + tableName;
+	 }
+ 
+	 String condMarked = String.join("=? AND ",condFields );
+		condMarked += "=?";
+	 	 
+	 return "DELETE " + tableName 
+			 + "  WHERE ("
+			 + condMarked + ")";
+	}
 
-    public String generateDeleteStatement(String tableName, String[] condition) {
-        String conditionList = String.join("= ? AND", condition);
 
-        return "DELETE FROM " + tableName
-                + " WHERE " + conditionList;
-    }
+public int deleteRow(String tableName,String[] condFields,Object[] condValues) {
+		
+	   String sql = generateDeleteStatement(tableName,condFields);
+		try(Connection con = ds.getConnection();
+				PreparedStatement pst = con.prepareStatement(sql))
+	    {
+			if(condValues != null) {
+				for (int i=0 ; i < condValues.length; i++) {
+					pst.setObject(i + 1, condValues[i]);			  
+				 }
+			  }
+			int numRows = pst.executeUpdate();
+			return numRows;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		     }
+  }
+ 
+ 
+ 
 }
 
