@@ -9,7 +9,10 @@ import javax.sql.DataSource;
 
 public abstract class AbstractMapper<T, K> {
 	protected DataSource ds;
-
+	public AbstractMapper(DataSource ds) {
+		this.ds = ds;
+	}
+	
 	/**
 	 * Devuelve el nombre de la tabla correspondiente al mapper concreto
 	 */
@@ -21,9 +24,9 @@ public abstract class AbstractMapper<T, K> {
 	protected abstract String[] getColumnNames();
 
 	/**
-	 * Devuelve un String con el nombre de la columna clave de la tabla
+	 * Devuelve un String con el nombre de las columnas clave de la tabla
 	 */
-	protected abstract String getKeyColumnName();
+	protected abstract String[] getKeyColumnNames();
 
 	/**
 	 * Construye un objeto mapeado a partir del ResultSet pasado como parámetro.
@@ -32,10 +35,37 @@ public abstract class AbstractMapper<T, K> {
 	 */
 	protected abstract T buildObjectFromResultSet(ResultSet rs) throws SQLException;
 
-	public AbstractMapper(DataSource ds) {
-		this.ds = ds;
-	}
 
+	/**
+	 * Descompone una clave K en array de objeto
+	 */
+	protected abstract Object[] decomposeKey(K key);
+
+	
+	/**
+	 * Contruye un objeto T a partir de un array de objetos
+	 */
+	protected abstract T buidObjectFromArray(Object[]  a );
+	
+
+	/**
+	 * obtiene un array de object a partir de un T
+	 */
+	protected abstract Object[] decomposeObject(T o);
+
+	
+	/**
+	 * Obtiene las claves K de un objeto T
+	 */
+	protected abstract K getKey(T o);
+	
+	
+	/**
+	 * Cambia el valor de la clave Autogenerada de T
+	 */
+	protected abstract void setKey(T o,Integer auto);
+	
+	
 	/**
 	 * Obtiene un objeto de la BD a partir de su clave.
 	 * 
@@ -47,7 +77,7 @@ public abstract class AbstractMapper<T, K> {
 		
 		String sql = "SELECT " + String.join(", ", columnNames)
 				+ " FROM " + this.getTableName()
-				+ " WHERE " + this.getKeyColumnName() + " = ?";
+				+ " WHERE " + this.getKeyColumnNames() + " = ?";
 		
 		System.out.println(sql);
 		
