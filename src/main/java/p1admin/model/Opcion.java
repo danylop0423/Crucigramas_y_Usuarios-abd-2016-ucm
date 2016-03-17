@@ -1,12 +1,27 @@
 package p1admin.model;
 
 public class Opcion {
+	private Integer Id;
 	private Pregunta preguntaMadre;
 	private int numeroOrden;
 	private String texto;
 	
 	public Opcion() {
 		
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return Id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		Id = id;
 	}
 
 	public Pregunta getPreguntaMadre() {
