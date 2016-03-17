@@ -4,13 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.sql.DataSource;
+
 
 public abstract class AbstractMapper<T, K> {
 	protected DataSource ds;
+	protected DataAccessor da;
 	public AbstractMapper(DataSource ds) {
 		this.ds = ds;
+		this.da = new DataAccessor(ds);
 	}
 	
 	/**
@@ -91,8 +93,28 @@ public abstract class AbstractMapper<T, K> {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		
 		} 
 		
 		return null;
 	}
+
+ public boolean InsertRow(T obj){
+	 String tableName=this.getTableName();
+	 String[] fields=this.getColumnNames();
+	 Object[] values=this.decomposeObject(obj);
+	  return da.insertRow(tableName,fields,values);	 
+ }
+/*
+ public int UpdateRow(T obj){
+	 String[] columnCondNames = getKeyColumnNames();
+	 Object[] condDec = decomposeKey(id);
+	 String tableName=this.getTableName();
+	 String[] fields=this.getColumnNames();
+	 Object[] values=this.decomposeObject(obj);
+	 QueryCondition[]
+	  return da.updateRow(tableName, fields, values, condFields, condValues);	 
+ }
+*/
+
 }
