@@ -7,10 +7,17 @@ public class Pregunta {
 	private Integer id;
 	private String enunciado;
 	private List<Opcion> opciones;
-	
+
 	public Pregunta() {
 		opciones = new ArrayList<>();
 	}
+
+	public Pregunta(Integer id, String enunciado, List<Opcion> opciones) {
+		this.id = id;
+		this.enunciado = enunciado;
+		this.opciones = opciones;
+	}
+
 
 	public Integer getId() {
 		return id;
