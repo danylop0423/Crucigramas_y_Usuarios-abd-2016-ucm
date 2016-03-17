@@ -7,7 +7,13 @@ public class Opcion {
 	private String texto;
 	
 	public Opcion() {
+	}
 		
+	public Opcion(Integer id, Pregunta preguntaMadre, int numeroOrden, String texto) {
+		this.Id = id;
+		this.preguntaMadre = preguntaMadre;
+		this.numeroOrden = numeroOrden;
+		this.texto = texto;
 	}
 
 	/**
