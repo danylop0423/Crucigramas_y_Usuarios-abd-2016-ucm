@@ -105,16 +105,18 @@ public abstract class AbstractMapper<T, K> {
 	 Object[] values=this.decomposeObject(obj);
 	  return da.insertRow(tableName,fields,values);	 
  }
-/*
- public int UpdateRow(T obj){
-	 String[] columnCondNames = getKeyColumnNames();
-	 Object[] condDec = decomposeKey(id);
-	 String tableName=this.getTableName();
+ public int UpdateRow(T obj,K id){
+	 Object[] keyDec =this.decomposeKey(id);
+	 String[] keyCols= this.getKeyColumnNames();
+	 
+	 QueryCondition[] conditions = new QueryCondition[keyCols.length];
+	 for(int i=0; i<conditions.length;i++)
+	 {
+		 conditions[i]=new QueryCondition(keyCols[i],QueryOperator.EQ,keyDec[i]);
+	 }
 	 String[] fields=this.getColumnNames();
 	 Object[] values=this.decomposeObject(obj);
-	 QueryCondition[]
-	  return da.updateRow(tableName, fields, values, condFields, condValues);	 
+	 return da.updateRow(this.getTableName(), fields, values, conditions);	 
  }
-*/
 
 }

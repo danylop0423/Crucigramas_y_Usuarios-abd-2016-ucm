@@ -46,48 +46,54 @@ public class DataAccessor {
  
 //UPDATE:
  private String generateUpdateStatement(String tableName, String[] fields, 
-		 														String[] condFields) {
-	 String fieldMarked = String.join("=?,",fields );
-	 fieldMarked += "=?";
-    
-	 if(condFields == null){
-			return  "UPDATE " + tableName + " SET (" + fieldMarked + ")";
-		 }
-	 
-	 String condMarked = String.join("=? AND ",condFields );
-		condMarked += "=?";
-	 	 
-	 return "UPDATE " + tableName 
-			 + " SET (" + fieldMarked + ") WHERE ("
-			 + condMarked + ")";
-	}
+			QueryCondition[] conditions)
+ 	{
+	 	String fieldMarked = String.join("=?,",fields );
+	 	fieldMarked += "=?";
 
- 
- public int updateRow(String tableName,String[] fields, Object[] values,
-		 				String[] condFields,Object[] condValues) {
-		
-	 	String sql = generateUpdateStatement(tableName,fields,condFields);
-		try(Connection con = ds.getConnection();
-				PreparedStatement pst = con.prepareStatement(sql))
-	    {
-			if(condFields != null){
-				int aux=0;
-				for (int i=0 ; i < values.length; i++) {
-					aux=i;
-					pst.setObject(i + 1, values[i]);			  
-				   }
-			
-				for ( int j=aux; j < (condValues.length+aux); j++) {
-					pst.setObject(j + 1, condValues[j]);
-				   }		
-		      }
-			int numRows = pst.executeUpdate();
-			return numRows;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return -1;
-		     }
- }
+	 	if(conditions == null){
+	 		return  "UPDATE " + tableName + " SET (" + fieldMarked + ")";
+	 	}
+
+	 	String[] cond= new String[conditions.length];
+	 	for(int i=0;i<cond.length;i++){
+	 		cond [i]= conditions[i].getColumnName() + "=?" ;
+	 	}
+
+	 	String condMarked = String.join(" AND ",cond );
+
+
+	 	return "UPDATE " + tableName 
+	 			+ " SET (" + fieldMarked + ") WHERE ("
+	 			+ condMarked + ")";
+ 		}
+
+
+public int updateRow(String tableName,String[] fields, Object[] values,
+		QueryCondition[] conditions) {
+
+	String sql = generateUpdateStatement(tableName,fields,conditions);
+	try(Connection con = ds.getConnection();
+			PreparedStatement pst = con.prepareStatement(sql))
+	{
+		if(conditions != null){
+			int aux=0;
+			for (int i=0 ; i < values.length; i++) {
+				aux=i;
+				pst.setObject(i + 1, values[i]);			  
+			}
+
+			for ( int j=aux; j < (conditions.length+aux); j++) {
+				pst.setObject(j + 1, conditions[j].getValue());
+			}		
+		}
+		int numRows = pst.executeUpdate();
+		return numRows;
+	} catch (SQLException e) {
+		e.printStackTrace();
+		return -1;
+	}
+  }
 
 //DELETE
  private String generateDeleteStatement(String tableName,String[] condFields) {		
