@@ -99,24 +99,58 @@ public abstract class AbstractMapper<T, K> {
 		return null;
 	}
 
- public boolean InsertRow(T obj){
-	 String tableName=this.getTableName();
-	 String[] fields=this.getColumnNames();
-	 Object[] values=this.decomposeObject(obj);
-	  return da.insertRow(tableName,fields,values);	 
- }
- public int UpdateRow(T obj,K id){
-	 Object[] keyDec =this.decomposeKey(id);
-	 String[] keyCols= this.getKeyColumnNames();
-	 
-	 QueryCondition[] conditions = new QueryCondition[keyCols.length];
-	 for(int i=0; i<conditions.length;i++)
-	 {
-		 conditions[i]=new QueryCondition(keyCols[i],QueryOperator.EQ,keyDec[i]);
+	/**
+	 * Inserta una fila en la BD a partir de el objeto T con el que tiene correspondecia
+	 * @param obj
+	 * @return
+	 */
+	public boolean InsertRow(T obj){
+		 String tableName=this.getTableName();
+		 String[] fields=this.getColumnNames();
+		 Object[] values=this.decomposeObject(obj);
+		  return da.insertRow(tableName,fields,values);	 
 	 }
-	 String[] fields=this.getColumnNames();
-	 Object[] values=this.decomposeObject(obj);
-	 return da.updateRow(this.getTableName(), fields, values, conditions);	 
- }
+	
+	/**
+	 * Actualiza una fila de la BD con los valores del objeto T con el que tiene 
+	 * Correspondencia y usando su clave K para encontrar dicha fila
+	 * @param obj
+	 * @param key
+	 * @return
+	 */
+	 public int UpdateRow(T obj,K key){
+		 Object[] keyDec =this.decomposeKey(key);
+		 String[] keyCols= this.getKeyColumnNames();
+		 
+		 QueryCondition[] conditions = new QueryCondition[keyCols.length];
+		 for(int i=0; i<conditions.length;i++)
+		 {
+			 conditions[i]=new QueryCondition(keyCols[i],QueryOperator.EQ,keyDec[i]);
+		 }
+		 String[] fields=this.getColumnNames();
+		 Object[] values=this.decomposeObject(obj);
+		 return da.updateRow(this.getTableName(), fields, values, conditions);	 
+	 }
+
+     
+	 /**
+	  * Borra una fila de la BD con  clave K , de un objeto T correspondiente que para 
+	  * este caso no hace falta explícitamente
+	  * @param key
+	  * @return
+	  */
+	 public int  DeleteRow(K key){
+		 Object[] keyDec =this.decomposeKey(key);
+		 String[] keyCols= this.getKeyColumnNames();
+		 
+		 QueryCondition[] conditions = new QueryCondition[keyCols.length];
+		 for(int i=0; i<conditions.length;i++)
+		 {
+			 conditions[i]=new QueryCondition(keyCols[i],QueryOperator.EQ,keyDec[i]);
+		 }
+		 
+		 return da.deleteRow(this.getTableName(), conditions);	 
+    	 
+      }
 
 }
