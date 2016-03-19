@@ -41,7 +41,7 @@ public class OpcionMapper extends AbstractMapper<Opcion, Integer> {
 	}
 
 	@Override
-	protected Opcion buidObjectFromArray(Object[] a) {
+	protected Opcion buildObjectFromArray(Object[] a) {
 		return new Opcion((Integer) a[0], (Pregunta) a[1], (Integer) a[2], (String) a[3]);
 	}
 

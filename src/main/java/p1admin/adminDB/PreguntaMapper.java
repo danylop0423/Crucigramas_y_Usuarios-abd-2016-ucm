@@ -40,7 +40,7 @@ public class PreguntaMapper extends AbstractMapper<Pregunta, Integer>{
 
 	@Override
 	@SuppressWarnings("unchecked")
-	protected Pregunta buidObjectFromArray(Object[] a) {
+	protected Pregunta buildObjectFromArray(Object[] a) {
 		return new Pregunta((Integer) a[0], (String) a[1], (List<Opcion>) a[2]);
 	}
 

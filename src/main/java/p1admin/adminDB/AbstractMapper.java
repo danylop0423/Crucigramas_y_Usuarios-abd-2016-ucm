@@ -47,7 +47,7 @@ public abstract class AbstractMapper<T, K> {
 	/**
 	 * Contruye un objeto T a partir de un array de objetos
 	 */
-	protected abstract T buidObjectFromArray(Object[]  a );
+	protected abstract T buildObjectFromArray(Object[]  a );
 	
 
 	/**
