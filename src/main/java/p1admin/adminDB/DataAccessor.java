@@ -52,7 +52,7 @@ public class DataAccessor {
 	 fieldMarked += "=?";
 
 	 if(conditions == null){
-		 return  "UPDATE " + tableName + " SET (" + fieldMarked + ")";
+		 return  "UPDATE " + tableName + " SET " + fieldMarked ;
 	 }
 
 	 String[] cond= new String[conditions.length];
@@ -65,8 +65,8 @@ public class DataAccessor {
 
 
 	 return "UPDATE " + tableName 
-			 + " SET (" + fieldMarked + ") WHERE ("
-			 + condMarked + ")";
+			 + " SET " + fieldMarked + " WHERE "
+			 + condMarked;
  	}
 
 
@@ -78,15 +78,13 @@ public int updateRow(String tableName,String[] fields, Object[] values,
 			PreparedStatement pst = con.prepareStatement(sql))
 	{
 		if(conditions != null){
-			int aux=0;
 			for (int i=0 ; i < values.length; i++) {
-				aux=i;
 				pst.setObject(i + 1, values[i]);			  
-			}
-
-			for ( int j=aux; j < (conditions.length+aux); j++) {
-				pst.setObject(j + 1, conditions[j].getValue());
-			}		
+			   }
+		
+			for ( int j=values.length; j < (conditions.length+values.length); j++) {
+				pst.setObject(j + 1, conditions[j-values.length].getValue());
+			   }		
 		}
 		int numRows = pst.executeUpdate();
 		return numRows;
@@ -112,8 +110,8 @@ private String generateDeleteStatement(String tableName,QueryCondition[] conditi
 
 
 		return "DELETE " + tableName 
-				+ "  WHERE ("
-				+ condMarked + ")";
+				+ "  WHERE "
+				+ condMarked ;
 	}	
 
 

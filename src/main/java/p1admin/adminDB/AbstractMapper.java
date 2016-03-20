@@ -67,6 +67,12 @@ public abstract class AbstractMapper<T, K> {
 	 */
 	protected abstract void setKey(T o,Integer auto);
 	
+	/**
+	 * Devuelve el entero autogenerado como clave y organiza los
+	 *  arrays correspondiente
+	 */
+	protected abstract Integer getAutoIncrement();
+
 	
 	/**
 	 * Obtiene un objeto de la BD a partir de su clave.
@@ -108,8 +114,16 @@ public abstract class AbstractMapper<T, K> {
 		 String tableName=this.getTableName();
 		 String[] fields=this.getColumnNames();
 		 Object[] values=this.decomposeObject(obj);
-		  return da.insertRow(tableName,fields,values);	 
-	 }
+		  boolean res= da.insertRow(tableName,fields,values);
+		  if(res){
+		    Integer auto=this.getAutoIncrement();
+		     if(auto != null){
+			    this.setKey(obj, auto);  
+		       }
+		    return res;
+		   }else
+			  return res;	 
+	  }
 	
 	/**
 	 * Actualiza una fila de la BD con los valores del objeto T con el que tiene 

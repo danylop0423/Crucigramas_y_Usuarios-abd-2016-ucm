@@ -1,6 +1,3 @@
-/**
- * 
- */
 package p1admin.adminDB;
 
 import java.sql.ResultSet;
@@ -58,5 +55,11 @@ public class OpcionMapper extends AbstractMapper<Opcion, Integer> {
 	@Override
 	protected void setKey(Opcion o, Integer auto) {
 		o.setId(auto);
+	}
+
+	@Override
+	protected Integer getAutoIncrement() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

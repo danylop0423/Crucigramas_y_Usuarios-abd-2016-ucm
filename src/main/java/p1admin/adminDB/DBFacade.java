@@ -3,6 +3,8 @@ package p1admin.adminDB;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import p1admin.model.Opcion;
 import p1admin.model.Pregunta;
 
@@ -17,6 +19,15 @@ import p1admin.model.Pregunta;
  */
 public class DBFacade implements GenericDBFacade<Pregunta, Opcion> {
 	// TODO Introduce los atributos que sean necesarios.
+	private DataSource ds;
+    private OpcionMapper om;
+    private PreguntaMapper pm;
+
+    public DBFacade(DataSource ds) {
+		this.ds = ds;
+		om= new OpcionMapper(ds);
+		pm= new PreguntaMapper(ds);
+	}
 
 	// TODO Si es necesario, añade el constructor que inicialice esos atributos.
 
@@ -34,7 +45,10 @@ public class DBFacade implements GenericDBFacade<Pregunta, Opcion> {
 	 */
 	@Override
 	public void insertQuestion(Pregunta question) {
-		System.out.println("Insertar pregunta en BD: " + question);
+		if (pm.InsertRow(question))
+			System.out.println("Insertar pregunta en BD all ok: " + question);
+			else
+			System.out.println("Insertar pregunta en BD: bad insertion");
 		// TODO Implementar
 	}
 
@@ -97,7 +111,10 @@ public class DBFacade implements GenericDBFacade<Pregunta, Opcion> {
 	 */
 	@Override
 	public void updateQuestion(Pregunta question) {
-		System.out.println("Actualizar pregunta: " + question);
+		if(pm.UpdateRow(question, question.getId()) > 0)
+			System.out.println("Actualizar pregunta ok: " + question);
+			else
+			System.out.println("Bad Update");
 		// TODO Implementar
 	}
 
