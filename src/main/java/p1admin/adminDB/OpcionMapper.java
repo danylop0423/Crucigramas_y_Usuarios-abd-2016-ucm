@@ -1,5 +1,7 @@
 package p1admin.adminDB;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.DataSource;
@@ -29,37 +31,57 @@ public class OpcionMapper extends AbstractMapper<Opcion, Integer> {
 
 	@Override
 	protected Opcion buildObjectFromResultSet(ResultSet rs) throws SQLException {
-		return new Opcion(rs.getInt("id"), null, rs.getInt("numero"), rs.getString("respuesta"));
+		// TODO Auto-generated method stub
+		return new Opcion(rs.getInt("id"),rs.getInt("respuestas.numero"),null,
+				          rs.getString("respuesta"));
 	}
 
 	@Override
 	protected Object[] decomposeKey(Integer key) {
-		return new Object[] { key };
+		// TODO Auto-generated method stub
+		return new Object[]{key};
 	}
 
 	@Override
 	protected Opcion buildObjectFromArray(Object[] a) {
-		return new Opcion((Integer) a[0], (Pregunta) a[1], (Integer) a[2], (String) a[3]);
+		// TODO Auto-generated method stub
+		return new Opcion((Integer)a[0], (int)a[1], (Pregunta)a[2], (String)a[3]);
 	}
 
 	@Override
 	protected Object[] decomposeObject(Opcion o) {
-		return new Object[] { o.getId(), o.getPreguntaMadre(), o.getNumeroOrden(), o.getTexto() };
+		// TODO Auto-generated method stub
+		return new Object[]{o.getId(),o.getNumeroOrden(),o.getPreguntaMadre().getId(),
+									o.getTexto()};
 	}
 
 	@Override
 	protected Integer getKey(Opcion o) {
+		// TODO Auto-generated method stub
 		return o.getId();
 	}
 
 	@Override
 	protected void setKey(Opcion o, Integer auto) {
+		// TODO Auto-generated method stub
 		o.setId(auto);
 	}
 
 	@Override
 	protected Integer getAutoIncrement() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		try(Connection con = ds.getConnection();
+				PreparedStatement pst = con.prepareStatement(
+						        "SELECT MAX(id) AS id FROM respuestas "))
+		{
+		 ResultSet rs = pst.executeQuery();
+		 if(rs.next())
+		 return rs.getInt("id");
+		 else return  null;
+		   }catch (SQLException e) {
+			 e.printStackTrace();
+		     return null;
+		    }
+
+	 }
+
 }

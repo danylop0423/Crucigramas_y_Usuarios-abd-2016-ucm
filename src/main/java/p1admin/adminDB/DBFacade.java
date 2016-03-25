@@ -1,6 +1,6 @@
 package p1admin.adminDB;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -19,6 +19,7 @@ import p1admin.model.Pregunta;
  */
 public class DBFacade implements GenericDBFacade<Pregunta, Opcion> {
 	// TODO Introduce los atributos que sean necesarios.
+	@SuppressWarnings("unused")
 	private DataSource ds;
     private OpcionMapper om;
     private PreguntaMapper pm;
@@ -67,9 +68,13 @@ public class DBFacade implements GenericDBFacade<Pregunta, Opcion> {
 	 */
 	@Override
 	public List<Pregunta> getAllQuestions() {
-		System.out.println("Obtener todas las preguntas de la BD");
-		// TODO Implementar
-		return new LinkedList<>();
+		List<Pregunta> questions=pm.getQuestions();
+		if (questions ==null) questions= new ArrayList<Pregunta>();
+		if (questions.isEmpty())
+			System.out.println("Recuperar preguntas de BD sin preguntas");
+			else
+			System.out.println("Recuperar preguntas de BD all ok ");	
+		return questions;
 	}
 
 	/**
@@ -89,9 +94,13 @@ public class DBFacade implements GenericDBFacade<Pregunta, Opcion> {
 	 */
 	@Override
 	public List<Pregunta> findQuestionsContaining(String text) {
-		System.out.println("Búsqueda de preguntas que contienen: " + text);
-		// TODO implementar
-		return new LinkedList<>();
+		List<Pregunta> questions=pm.getQuestionsFiltered(text);
+		if (questions ==null) questions= new ArrayList<Pregunta>();
+		if (questions.isEmpty())
+			System.out.println("Recuperar filtradas de BD sin preguntas");
+			else
+			System.out.println("Recuperar filtradas de BD all ok ");	
+		return questions;
 	}
 
 	/**
@@ -112,9 +121,9 @@ public class DBFacade implements GenericDBFacade<Pregunta, Opcion> {
 	@Override
 	public void updateQuestion(Pregunta question) {
 		if(pm.UpdateRow(question, question.getId()) > 0)
-			System.out.println("Actualizar pregunta ok: " + question);
-			else
-			System.out.println("Bad Update");
+		System.out.println("Actualizar pregunta ok: " + question);
+		else
+		System.out.println("Bad Update");	
 		// TODO Implementar
 	}
 
@@ -135,9 +144,10 @@ public class DBFacade implements GenericDBFacade<Pregunta, Opcion> {
 	 */
 	@Override
 	public void updateAnswer(Pregunta question, Opcion answer) {
-		System.out.println("Actualizar opción " + answer);
-		// TODO Implementar
-
+		if(om.UpdateRow(answer, answer.getId()) > 0)
+			System.out.println("Actualizar opcion ok: " + question);
+			else
+			System.out.println("Bad Update");	
 	}
 
 	/**
@@ -154,8 +164,10 @@ public class DBFacade implements GenericDBFacade<Pregunta, Opcion> {
 	 */
 	@Override
 	public void deleteAnswer(Pregunta question, Opcion answer) {
-		System.out.println("Eliminar opción " + answer);
-		// TODO Implementar
+		if(om.DeleteRow(answer.getId()) > 0)
+		  System.out.println("Eliminar opción  ok" + answer);
+		else
+		  System.out.println("Bad Delete" + answer);
 	}
 
 	/**
@@ -173,8 +185,10 @@ public class DBFacade implements GenericDBFacade<Pregunta, Opcion> {
 	 */
 	@Override
 	public void deleteQuestion(Pregunta question) {
-		System.out.println("Eliminar pregunta " + question);
-		// TODO Implementar
+		if(pm.DeleteRow(question.getId()) > 0)
+			  System.out.println("Eliminar pregunta  ok" + question);
+			else
+			  System.out.println("Bad Delete" + question);
 	}
 
 	/**
@@ -190,7 +204,11 @@ public class DBFacade implements GenericDBFacade<Pregunta, Opcion> {
 	 */
 	@Override
 	public void insertAnswer(Pregunta question, Opcion answer) {
-		System.out.println("Insertar " + answer);
+		answer.setPreguntaMadre(question);
+		if (om.InsertRow(answer))
+			System.out.println("Insertar opcion en BD all ok: " + question);
+			else
+			System.out.println("Insertar opcion en BD: bad insertion");
 		// TODO Implementar
 	}
 }

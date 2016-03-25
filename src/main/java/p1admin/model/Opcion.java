@@ -1,7 +1,7 @@
 package p1admin.model;
 
 public class Opcion {
-	private Integer Id;
+	private Integer id;
 	private Pregunta preguntaMadre;
 	private int numeroOrden;
 	private String texto;
@@ -9,25 +9,25 @@ public class Opcion {
 	public Opcion() {
 	}
 		
-	public Opcion(Integer id, Pregunta preguntaMadre, int numeroOrden, String texto) {
-		this.Id = id;
-		this.preguntaMadre = preguntaMadre;
-		this.numeroOrden = numeroOrden;
-		this.texto = texto;
+	public Opcion(Integer i,int num,Pregunta preg,String txt) {
+		// TODO Auto-generated constructor stub
+		id=i;
+		preguntaMadre=preg;
+		numeroOrden=num;
+		texto=txt;
 	}
-
 	/**
 	 * @return the id
 	 */
 	public Integer getId() {
-		return Id;
+		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Integer id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public Pregunta getPreguntaMadre() {

@@ -1,7 +1,5 @@
 package p1admin.adminDB;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.DataSource;
@@ -72,38 +70,6 @@ public abstract class AbstractMapper<T, K> {
 	 *  arrays correspondiente
 	 */
 	protected abstract Integer getAutoIncrement();
-
-	
-	/**
-	 * Obtiene un objeto de la BD a partir de su clave.
-	 * 
-	 * @param id Clave del objeto a buscar
-	 * @return El objeto recuperado de la BD, o null si el objeto no se ha encontrado
-	 */
-	public T findById(K id) {
-		String[] columnNames = this.getColumnNames();
-		
-		String sql = "SELECT " + String.join(", ", columnNames)
-				+ " FROM " + this.getTableName()
-				+ " WHERE " + this.getKeyColumnNames() + " = ?";
-		
-		System.out.println(sql);
-		
-		try (Connection con = ds.getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
-			st.setObject(1, id);
-			
-			try (ResultSet rs = st.executeQuery()) {
-				if (rs.next()) {
-					return this.buildObjectFromResultSet(rs);
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		
-		} 
-		
-		return null;
-	}
 
 	/**
 	 * Inserta una fila en la BD a partir de el objeto T con el que tiene correspondecia
