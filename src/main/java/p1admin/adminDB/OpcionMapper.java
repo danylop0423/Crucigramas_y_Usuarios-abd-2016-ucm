@@ -21,7 +21,7 @@ public class OpcionMapper extends AbstractMapper<Opcion, Integer> {
 
 	@Override
 	protected String[] getColumnNames() {
-		return new String[] {"numero", "n_pregunta", "respuesta"};
+		return new String[] {"id", "numero", "n_pregunta", "respuesta"};
 	}
 
 	@Override
