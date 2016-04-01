@@ -1,4 +1,4 @@
-package p1admin.model;
+package abd.p1.model;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ public class Usuario {
 	private String nombre;
 	private String genero;
 	private String genero_buscado;
-	private Timestamp fecha_nac; 
+	private Timestamp fecha_nac;
 	private byte[ ] foto;
 	private String descripcion;
 	private String latitud;
@@ -19,7 +19,7 @@ public class Usuario {
 	private List<Usuario> amigos;
 	private List<String> aficiones;
 
-	
+
 	public Usuario(String email, String password, String nombre, String genero, String genero_buscado,
 			Timestamp fecha_nac, byte[] foto, String descripcion, String latitud, String longitud) {
 		this.email = email;
@@ -119,21 +119,21 @@ public class Usuario {
 	public void setLongitud(String longitud) {
 		this.longitud = longitud;
 	}
-	
-	
-	
+
+
+
 	public List<Usuario> getAmigos() {
 		return amigos;
 	}
-	
+
 	public void addAmigo(Usuario u) {
 		amigos.add(u);
 	}
-	
+
 	public void removeAmigo(Usuario u) {
 		amigos.remove(u);
 	}
-	
+
 	public int getNumAmigo() {
 		return amigos.size();
 	}
@@ -141,15 +141,15 @@ public class Usuario {
 	public List<Mensaje> getMensajes() {
 		return mensajes;
 	}
-	
+
 	public void addMensaje(Mensaje m) {
 		mensajes.add(m);
 	}
-	
+
 	public void removeMensaje(Mensaje m) {
 		mensajes.remove(m);
 	}
-	
+
 	public int getNumMensajes() {
 		return mensajes.size();
 	}
@@ -157,18 +157,18 @@ public class Usuario {
 	public List<String> getAficiones() {
 		return aficiones;
 	}
-	
+
 	public void addAficion(String a) {
 		aficiones.add(a);
 	}
-	
+
 	public void removeAficion(String a) {
 		aficiones.remove(a);
 	}
-	
+
 	public int getNumAficiones() {
 		return aficiones.size();
 	}
 
-	
+
 }

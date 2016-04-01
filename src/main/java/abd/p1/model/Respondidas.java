@@ -1,4 +1,4 @@
-package p1admin.model;
+package abd.p1.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ public class Respondidas {
 	private Usuario usuario;
 	private Integer relevancia;
 	private List<Opcion> respondidas;
-	
+
 	public Respondidas(Usuario usuario, Integer relevancia) {
 		this.usuario = usuario;
 		this.relevancia = relevancia;
@@ -33,17 +33,17 @@ public class Respondidas {
 	public List<Opcion> getRespondidas() {
 		return respondidas;
 	}
-	
+
 	public void addRespondida(Opcion o) {
 		respondidas.add(o);
 	}
-	
+
 	public void removeRespondida(Opcion o) {
 		respondidas.remove(o);
 	}
-	
+
 	public int getNumRespondidas() {
 		return respondidas.size();
 	}
-	
+
 }

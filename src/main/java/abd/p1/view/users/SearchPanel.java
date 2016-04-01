@@ -6,7 +6,7 @@
 package abd.p1.view.users;
 
 import javax.swing.DefaultListModel;
-import p1admin.model.Usuario;
+import abd.p1.model.Usuario;
 
 /**
  *
@@ -22,12 +22,12 @@ public class SearchPanel extends javax.swing.JPanel {
         Usuario u1 = new Usuario();
         Usuario u2 = new Usuario();
         Usuario u3 = new Usuario();
-        
+
         DefaultListModel<Usuario> modelo = new DefaultListModel<>();
         modelo.addElement(u1);
         modelo.addElement(u2);
         modelo.addElement(u3);
-        
+
         userList.setModel(modelo);
         userList.setCellRenderer(new UserCellRenderer());
     }

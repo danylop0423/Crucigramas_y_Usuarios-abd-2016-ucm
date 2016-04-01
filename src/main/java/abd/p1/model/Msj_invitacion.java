@@ -1,14 +1,14 @@
-package p1admin.model;
+package abd.p1.model;
 
 import java.sql.Timestamp;
 
 public class Msj_invitacion extends Mensaje {
 	private String xdefecto;
 	private Pregunta pregunta;
-	
+
 	public Msj_invitacion(Integer id, Usuario emisor, Usuario receptor, Timestamp fecha, boolean leido) {
 		super(id, emisor, receptor, fecha, leido);
-		
+
 	}
 
 	/**
@@ -39,5 +39,5 @@ public class Msj_invitacion extends Mensaje {
 		this.pregunta = pregunta;
 	}
 
-	
+
 }

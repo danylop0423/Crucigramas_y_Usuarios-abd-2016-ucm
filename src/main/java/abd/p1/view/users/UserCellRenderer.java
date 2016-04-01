@@ -9,7 +9,7 @@ import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import p1admin.model.Usuario;
+import abd.p1.model.Usuario;
 
 /**
  *
@@ -22,13 +22,13 @@ public class UserCellRenderer extends UserRowPanel implements ListCellRenderer<U
         //this.setName(value.getNombre());
         //this.setAge(value.calculateAge());
         //this.setOpaque(true);
-        
+
         if (isSelected) {
             this.setBackground(Color.DARK_GRAY);
         } else {
             this.setBackground(Color.WHITE);
         }
-        
+
         return this;
     }
 }

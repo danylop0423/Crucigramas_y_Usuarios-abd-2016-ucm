@@ -1,14 +1,14 @@
-package p1admin.model;
+package abd.p1.model;
 
 public class Opcion {
 	private Integer id;
 	private Pregunta preguntaMadre;
 	private int numeroOrden;
 	private String texto;
-	
+
 	public Opcion() {
 	}
-		
+
 	public Opcion(Integer i,int num,Pregunta preg,String txt) {
 		// TODO Auto-generated constructor stub
 		id=i;
@@ -53,7 +53,7 @@ public class Opcion {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

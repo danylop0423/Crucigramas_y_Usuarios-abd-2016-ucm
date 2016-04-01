@@ -1,13 +1,13 @@
-package p1admin.model;
+package abd.p1.model;
 
 import java.sql.Timestamp;
 
 public class Msj_solicitud extends Mensaje {
 	private String xdefecto;
-	
+
 	public Msj_solicitud(Integer id, Usuario emisor, Usuario receptor, Timestamp fecha, boolean leido) {
 		super(id, emisor, receptor, fecha, leido);
-		
+
 	}
 	/**
 	 * @return the xdefecto
@@ -23,6 +23,6 @@ public class Msj_solicitud extends Mensaje {
 		this.xdefecto = xdefecto;
 	}
 
-	
+
 
 }

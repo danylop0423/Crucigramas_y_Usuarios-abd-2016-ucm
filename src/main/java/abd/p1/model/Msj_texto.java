@@ -1,4 +1,4 @@
-package p1admin.model;
+package abd.p1.model;
 
 import java.sql.Timestamp;
 
