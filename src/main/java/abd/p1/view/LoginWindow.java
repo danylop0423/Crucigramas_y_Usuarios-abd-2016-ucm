@@ -7,7 +7,7 @@ package abd.p1.view;
 
 /**
  *
- * @author labrador
+ * @author David Labrador <davidlab@ucm.es>
  */
 public class LoginWindow extends javax.swing.JDialog {
 
@@ -31,9 +31,10 @@ public class LoginWindow extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         emailField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        passField = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
         agreeButton = new javax.swing.JButton();
         newUserButton = new javax.swing.JButton();
-        passField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -48,16 +49,18 @@ public class LoginWindow extends javax.swing.JDialog {
 
         jLabel2.setText("Contraseña:");
 
-        agreeButton.setText("Aceptar");
-
-        newUserButton.setText("Nuevo usuario");
-
         passField.setText("jPasswordField1");
         passField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passFieldActionPerformed(evt);
             }
         });
+
+        agreeButton.setText("Aceptar");
+        jPanel1.add(agreeButton);
+
+        newUserButton.setText("Nuevo usuario");
+        jPanel1.add(newUserButton);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,17 +69,15 @@ public class LoginWindow extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 159, Short.MAX_VALUE)
-                        .addComponent(newUserButton)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(agreeButton))
-                    .addComponent(emailField)
-                    .addComponent(passField))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(passField))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -90,10 +91,8 @@ public class LoginWindow extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(passField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agreeButton)
-                    .addComponent(newUserButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -156,6 +155,7 @@ public class LoginWindow extends javax.swing.JDialog {
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton newUserButton;
     private javax.swing.JPasswordField passField;
     // End of variables declaration//GEN-END:variables
