@@ -10,7 +10,7 @@ import abd.p1.model.Usuario;
 
 /**
  *
- * @author labrador
+ * @author David Labrador <davidlab@ucm.es>
  */
 public class SearchPanel extends javax.swing.JPanel {
 

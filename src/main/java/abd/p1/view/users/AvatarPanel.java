@@ -12,14 +12,15 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author labrador
+ * @author David Labrador <davidlab@ucm.es>
  */
 public class AvatarPanel extends javax.swing.JPanel {
     private static final int SIZE = 64;
-    private static final ImageIcon defaultIcon =
-            new ImageIcon(AvatarPanel.class.getResource("defaultAvatar.jpg")) != null
+    private static final ImageIcon DEFAULT_ICON = 
+            new ImageIcon("/src/adb/p1/view/users/defaultAvatar.jpg");
+            /*new ImageIcon(AvatarPanel.class.getResource("defaultAvatar.jpg")) != null
                 ? new ImageIcon(AvatarPanel.class.getResource("defaultAvatar.jpg"))
-                : new ImageIcon(AvatarPanel.class.getClassLoader().getResource("defaultAvatar.jpg"));
+                : new ImageIcon(AvatarPanel.class.getClassLoader().getResource("defaultAvatar.jpg"));*/
     
     private ImageIcon icon;
     private Image rescaledIcon;
@@ -28,7 +29,7 @@ public class AvatarPanel extends javax.swing.JPanel {
      * Creates new form AvatarPanel
      */
     public AvatarPanel() {
-        this(defaultIcon);
+        this(DEFAULT_ICON);
     }
     
     public AvatarPanel(ImageIcon icon) {

@@ -9,7 +9,7 @@ import abd.p1.model.Pregunta;
 
 /**
  *
- * @author labrador
+ * @author David Labrador <davidlab@ucm.es>
  */
 public class QuestionRowPanel extends javax.swing.JPanel {
 

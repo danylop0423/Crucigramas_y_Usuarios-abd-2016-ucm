@@ -14,7 +14,7 @@ import abd.p1.model.Opcion;
 
 /**
  *
- * @author labrador
+ * @author David Labrador <davidlab@ucm.es>
  */
 public class AnswerCellRenderer extends JLabel implements ListCellRenderer<Opcion> {
 

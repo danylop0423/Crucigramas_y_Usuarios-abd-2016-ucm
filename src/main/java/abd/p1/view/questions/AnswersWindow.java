@@ -5,16 +5,17 @@
  */
 package abd.p1.view.questions;
 
-import java.util.ArrayList;
-import javax.swing.DefaultListModel;
+import abd.p1.controller.AnswersController;
 import abd.p1.model.Opcion;
-import abd.p1.model.Pregunta;
+import javax.swing.DefaultListModel;
 
 /**
  *
- * @author labrador
+ * @author David Labrador <davidlab@ucm.es>
  */
 public class AnswersWindow extends javax.swing.JDialog {
+
+    private AnswersController controller;
 
     /**
      * Creates new form AnswersWindow
@@ -22,18 +23,15 @@ public class AnswersWindow extends javax.swing.JDialog {
     public AnswersWindow(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
-        Pregunta p1 = new Pregunta(0, "¿Te gusta fútbol?", new ArrayList<Opcion>());
-        Opcion o1 = new Opcion(0, 1, p1, "Si");
-        Opcion o2 = new Opcion(1, 2, p1, "No");
-
-        DefaultListModel<Opcion> modelo = new DefaultListModel<>();
-        modelo.addElement(o1);
-        modelo.addElement(o2);
-
-        answersList.setModel(modelo);
-        answersList.setCellRenderer(new AnswerCellRenderer());
     }
+
+     public AnswersWindow(AnswersController controller, DefaultListModel<Opcion> model) {
+        this(null, true);
+        this.controller = controller;
+        answerStatementLabel.setText(controller.getQuestionStatement());
+        answersList.setCellRenderer(new AnswerCellRenderer());
+        answersList.setModel(model);
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,7 +42,7 @@ public class AnswersWindow extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelTexto = new javax.swing.JLabel();
+        answerStatementLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         answersList = new javax.swing.JList();
         panelButtons = new javax.swing.JPanel();
@@ -55,8 +53,8 @@ public class AnswersWindow extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        labelTexto.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        labelTexto.setText("Texto de pregunta");
+        answerStatementLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        answerStatementLabel.setText("Texto de pregunta");
 
         jScrollPane1.setViewportView(answersList);
 
@@ -99,19 +97,17 @@ public class AnswersWindow extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(panelButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
-                        .addGap(100, 100, 100))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
+                    .addComponent(answerStatementLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelTexto)
+                .addComponent(answerStatementLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
                 .addGap(9, 9, 9)
@@ -177,13 +173,13 @@ public class AnswersWindow extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel answerStatementLabel;
     private javax.swing.JList answersList;
     private javax.swing.JButton buttonMoverAbajo;
     private javax.swing.JButton buttonMoverArriba;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSlider jSlider1;
-    private javax.swing.JLabel labelTexto;
     private javax.swing.JPanel panelButtons;
     // End of variables declaration//GEN-END:variables
 }

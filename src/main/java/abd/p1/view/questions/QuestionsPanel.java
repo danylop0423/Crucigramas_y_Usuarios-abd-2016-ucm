@@ -5,44 +5,27 @@
  */
 package abd.p1.view.questions;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.DefaultListModel;
-import abd.p1.model.Opcion;
+import abd.p1.controller.QuestionsController;
 import abd.p1.model.Pregunta;
+import javax.swing.DefaultListModel;
 
 /**
  *
- * @author labrador
+ * @author David Labrador <davidlab@ucm.es>
  */
 public class QuestionsPanel extends javax.swing.JPanel {
+
+    private final QuestionsController controller;
 
     /**
      * Creates new form QuestionsPanel
      */
-    public QuestionsPanel() {
+    public QuestionsPanel(DefaultListModel<Pregunta> model, QuestionsController controller) {
         initComponents();
-
-        Pregunta p1 = new Pregunta(0, "¿Te gusta fútbol?", new ArrayList<Opcion>());
-        p1.getOpciones().add(new Opcion());
-        p1.getOpciones().add(new Opcion());
-        p1.getOpciones().add(new Opcion());
-        Pregunta p2 = new Pregunta(1, "¿Te gusta viajar?", new ArrayList<Opcion>());
-        p2.getOpciones().add(new Opcion());
-        p2.getOpciones().add(new Opcion());
-        Pregunta p3 = new Pregunta(2, "¿A qué partido no votarías nunca?", new ArrayList<Opcion>());
-        p3.getOpciones().add(new Opcion());
-        p3.getOpciones().add(new Opcion());
-        p3.getOpciones().add(new Opcion());
-        p3.getOpciones().add(new Opcion());
-
-        DefaultListModel<Pregunta> modelo = new DefaultListModel<>();
-        modelo.addElement(p1);
-        modelo.addElement(p2);
-        modelo.addElement(p3);
-
-        questionsList.setModel(modelo);
+        this.controller = controller;
+        questionsList.setModel(model);
         questionsList.setCellRenderer(new QuestionCellRenderer());
+        controller.gatherAllQuestions();
     }
 
     /**
@@ -112,7 +95,10 @@ public class QuestionsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void answerButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        Pregunta question = questionsList.getSelectedValue();
+        if (question != null) {
+            controller.answerQuestion(this, question);
+        }
     }
 
     private void randomAnswerButtonActionPerformed(java.awt.event.ActionEvent evt) {

@@ -5,6 +5,10 @@
  */
 package abd.p1.view;
 
+import abd.p1.controller.QuestionsController;
+import abd.p1.model.Pregunta;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author David Labrador <davidlab@ucm.es>
@@ -27,11 +31,14 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        DefaultListModel<Pregunta> model = new DefaultListModel<>();
+        QuestionsController controller = new QuestionsController(model);
+
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         usersPanel1 = new abd.p1.view.users.UsersPanel();
         jPanel2 = new javax.swing.JPanel();
-        questionsPanel1 = new abd.p1.view.questions.QuestionsPanel();
+        questionsPanel1 = new abd.p1.view.questions.QuestionsPanel(model, controller);
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

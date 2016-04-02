@@ -72,9 +72,6 @@
     <Component class="javax.swing.JLabel" name="labelFiltro">
       <Properties>
         <Property name="displayedMnemonic" type="int" value="70"/>
-        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="default"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Mejor valoradas:"/>
       </Properties>
     </Component>

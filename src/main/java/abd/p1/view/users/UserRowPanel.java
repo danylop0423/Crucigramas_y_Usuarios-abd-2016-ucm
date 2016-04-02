@@ -7,7 +7,7 @@ package abd.p1.view.users;
 
 /**
  *
- * @author labrador
+ * @author David Labrador <davidlab@ucm.es>
  */
 public class UserRowPanel extends javax.swing.JPanel {
     private String name;
