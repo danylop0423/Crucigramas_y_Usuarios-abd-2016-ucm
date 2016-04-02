@@ -5,6 +5,10 @@
  */
 package abd.p1.view.users;
 
+import abd.p1.controller.UsersController;
+import abd.p1.model.Usuario;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author David Labrador <davidlab@ucm.es>
@@ -27,7 +31,10 @@ public class UsersPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        searchPanel1 = new abd.p1.view.users.SearchPanel();
+        DefaultListModel<Usuario> model = new DefaultListModel<>();
+        UsersController controller = new UsersController(model);
+
+        searchPanel1 = new abd.p1.view.users.SearchPanel(controller, model);
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();

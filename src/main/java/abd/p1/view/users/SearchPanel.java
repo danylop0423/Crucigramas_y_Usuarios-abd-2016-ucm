@@ -5,8 +5,9 @@
  */
 package abd.p1.view.users;
 
-import javax.swing.DefaultListModel;
+import abd.p1.controller.UsersController;
 import abd.p1.model.Usuario;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -14,22 +15,17 @@ import abd.p1.model.Usuario;
  */
 public class SearchPanel extends javax.swing.JPanel {
 
+    private final UsersController controller;
+
     /**
      * Creates new form SearchPanel
      */
-    public SearchPanel() {
+    public SearchPanel(UsersController controller, DefaultListModel<Usuario> modelo) {
         initComponents();
-        Usuario u1 = new Usuario();
-        Usuario u2 = new Usuario();
-        Usuario u3 = new Usuario();
-
-        DefaultListModel<Usuario> modelo = new DefaultListModel<>();
-        modelo.addElement(u1);
-        modelo.addElement(u2);
-        modelo.addElement(u3);
-
+        this.controller = controller;
         userList.setModel(modelo);
         userList.setCellRenderer(new UserCellRenderer());
+        controller.gatherAllUsers();
     }
 
     /**
