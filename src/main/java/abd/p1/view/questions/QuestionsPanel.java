@@ -8,6 +8,7 @@ package abd.p1.view.questions;
 import abd.p1.controller.QuestionsController;
 import abd.p1.model.Pregunta;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -98,6 +99,11 @@ public class QuestionsPanel extends javax.swing.JPanel {
         Pregunta question = questionsList.getSelectedValue();
         if (question != null) {
             controller.answerQuestion(this, question);
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Ninguna pregunta seleccionada",
+                    "Error",
+                    JOptionPane.WARNING_MESSAGE);
         }
     }
 
