@@ -120,6 +120,7 @@ public class AnswersWindow extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonMoverAbajoActionPerformed(java.awt.event.ActionEvent evt) {
