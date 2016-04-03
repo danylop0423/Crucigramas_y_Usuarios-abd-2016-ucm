@@ -21,6 +21,11 @@ public class QuestionsPanel extends javax.swing.JPanel {
     /**
      * Creates new form QuestionsPanel
      */
+    public QuestionsPanel() {
+        initComponents();
+        this.controller = null;
+    }
+
     public QuestionsPanel(DefaultListModel<Pregunta> model, QuestionsController controller) {
         initComponents();
         this.controller = controller;
