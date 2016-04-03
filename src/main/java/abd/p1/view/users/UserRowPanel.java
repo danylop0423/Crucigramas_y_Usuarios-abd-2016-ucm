@@ -12,19 +12,14 @@ package abd.p1.view.users;
 public class UserRowPanel extends javax.swing.JPanel {
     private String name;
     private int age;
-    private boolean editable;
 
     /**
      * Creates new form UserPanel
      */
     public UserRowPanel() {
         initComponents();
-        nameLabel.setText("Labrador");
-        ageLabel.setText("25 años");
-        nameButton.setVisible(false);
-        birthDateButton.setVisible(false);
     }
-    
+
     public String getName() {
         return name;
     }
@@ -43,16 +38,6 @@ public class UserRowPanel extends javax.swing.JPanel {
         ageLabel.setText(age + " años");
     }
 
-    public boolean isEditable() {
-        return editable;
-    }
-
-    public void setEditable(boolean editable) {
-        this.editable = editable;
-        nameButton.setVisible(editable);
-        birthDateButton.setVisible(editable);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,8 +50,6 @@ public class UserRowPanel extends javax.swing.JPanel {
         avatarPanel1 = new abd.p1.view.users.AvatarPanel();
         nameLabel = new javax.swing.JLabel();
         ageLabel = new javax.swing.JLabel();
-        nameButton = new javax.swing.JButton();
-        birthDateButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout avatarPanel1Layout = new javax.swing.GroupLayout(avatarPanel1);
         avatarPanel1.setLayout(avatarPanel1Layout);
@@ -83,15 +66,6 @@ public class UserRowPanel extends javax.swing.JPanel {
 
         ageLabel.setText("Edad");
 
-        nameButton.setText("Cambiar nombre");
-        nameButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameButtonActionPerformed(evt);
-            }
-        });
-
-        birthDateButton.setText("Cambiar fecha de nacimiento");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,11 +77,7 @@ public class UserRowPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nameLabel)
                     .addComponent(ageLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(birthDateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(274, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,28 +85,18 @@ public class UserRowPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(nameButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(birthDateButton))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(nameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ageLabel))
                     .addComponent(avatarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ageLabel;
     private abd.p1.view.users.AvatarPanel avatarPanel1;
-    private javax.swing.JButton birthDateButton;
-    private javax.swing.JButton nameButton;
     private javax.swing.JLabel nameLabel;
     // End of variables declaration//GEN-END:variables
 }

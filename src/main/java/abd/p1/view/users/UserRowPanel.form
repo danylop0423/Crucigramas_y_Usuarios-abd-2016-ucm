@@ -24,12 +24,7 @@
                   <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
                   <Component id="ageLabel" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="55" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="birthDateButton" max="32767" attributes="0"/>
-                  <Component id="nameButton" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="274" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -39,18 +34,13 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="nameButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="birthDateButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="ageLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="avatarPanel1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -79,19 +69,6 @@
     <Component class="javax.swing.JLabel" name="ageLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Edad"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="nameButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cambiar nombre"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="birthDateButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cambiar fecha de nacimiento"/>
       </Properties>
     </Component>
   </SubComponents>
