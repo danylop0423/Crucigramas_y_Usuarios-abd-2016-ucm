@@ -49,7 +49,7 @@
                   </Group>
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="genderLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
                       <Component id="genderButton" max="32767" attributes="0"/>
                   </Group>
@@ -58,7 +58,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="preferenceLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
                       <Component id="preferenceButton" max="32767" attributes="0"/>
                   </Group>
@@ -107,12 +107,12 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="genderButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="genderLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="preferenceButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="preferenceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -178,7 +178,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="descriptionTextArea">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -206,12 +206,12 @@
         <Property name="text" type="java.lang.String" value="Editar seleccionada"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="genderLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sexo: Masculino"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="preferenceLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Busca: Mujeres"/>
       </Properties>

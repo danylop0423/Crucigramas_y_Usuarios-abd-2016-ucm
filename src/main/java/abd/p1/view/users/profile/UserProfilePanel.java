@@ -1,12 +1,14 @@
 package abd.p1.view.users.profile;
 
+import abd.p1.controller.UsersController;
+
 /**
  *
  * @author David Labrador <davidlab@ucm.es>
  */
 public class UserProfilePanel extends javax.swing.JPanel {
-    private String name;
-    private int age;
+
+    private UsersController controller;
     private boolean editable;
 
     /**
@@ -14,26 +16,18 @@ public class UserProfilePanel extends javax.swing.JPanel {
      */
     public UserProfilePanel() {
         initComponents();
-        nameLabel.setText("Labrador");
-        ageLabel.setText("25 años");
     }
 
-    public String getName() {
-        return name;
-    }
+    public UserProfilePanel(UsersController controller) {
+        this.controller = controller;
 
-    public void setName(String name) {
-        this.name = name;
-        nameLabel.setText(name);
-    }
+        initComponents();
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-        ageLabel.setText(age + " años");
+        nameLabel.setText(controller.getUserName());
+        ageLabel.setText(controller.getUserAge() + " años");
+        genderLabel.setText("Sexo: " + controller.getUserGender());
+        preferenceLabel.setText("Busca: " + controller.getUserPreference());
+        descriptionTextArea.setText(controller.getUserDescription());
     }
 
     public boolean isEditable() {
@@ -70,13 +64,13 @@ public class UserProfilePanel extends javax.swing.JPanel {
         avatarButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        descriptionTextArea = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         addHobbyButton = new javax.swing.JButton();
         deleteHobbyButton = new javax.swing.JButton();
         editHobbyButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        genderLabel = new javax.swing.JLabel();
+        preferenceLabel = new javax.swing.JLabel();
         genderButton = new javax.swing.JButton();
         preferenceButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -106,6 +100,11 @@ public class UserProfilePanel extends javax.swing.JPanel {
         });
 
         birthDateButton.setText("Cambiar fecha de nacimiento");
+        birthDateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                birthDateButtonActionPerformed(evt);
+            }
+        });
 
         avatarButton.setText("Cambiar avatar");
         avatarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -116,9 +115,9 @@ public class UserProfilePanel extends javax.swing.JPanel {
 
         jLabel1.setText("Descripción:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        descriptionTextArea.setColumns(20);
+        descriptionTextArea.setRows(5);
+        jScrollPane1.setViewportView(descriptionTextArea);
 
         jLabel2.setText("Aficiones:");
 
@@ -128,13 +127,23 @@ public class UserProfilePanel extends javax.swing.JPanel {
 
         editHobbyButton.setText("Editar seleccionada");
 
-        jLabel3.setText("Sexo: Masculino");
+        genderLabel.setText("Sexo: Masculino");
 
-        jLabel4.setText("Busca: Mujeres");
+        preferenceLabel.setText("Busca: Mujeres");
 
         genderButton.setText("Cambiar sexo");
+        genderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genderButtonActionPerformed(evt);
+            }
+        });
 
         preferenceButton.setText("Cambiar preferencia");
+        preferenceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                preferenceButtonActionPerformed(evt);
+            }
+        });
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Hechizos", "Artes oscuras", "Pócimas", "Brujería", "Ciudar gatitos" };
@@ -175,14 +184,14 @@ public class UserProfilePanel extends javax.swing.JPanel {
                             .addComponent(addHobbyButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(genderLabel)
                         .addGap(304, 304, 304)
                         .addComponent(genderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(preferenceLabel)
                         .addGap(313, 313, 313)
                         .addComponent(preferenceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -221,23 +230,35 @@ public class UserProfilePanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(genderButton)
-                    .addComponent(jLabel3))
+                    .addComponent(genderLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(preferenceButton)
-                    .addComponent(jLabel4))
+                    .addComponent(preferenceLabel))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameButtonActionPerformed
-        // TODO add your handling code here:
+        nameLabel.setText(controller.updateName());
     }//GEN-LAST:event_nameButtonActionPerformed
 
     private void avatarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatarButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_avatarButtonActionPerformed
 
+    private void birthDateButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        ageLabel.setText(controller.updateBirthDate() + " años");
+    }
+
+    private void genderButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        genderLabel.setText("Sexo: " + controller.updateGender());
+
+    }
+
+    private void preferenceButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        preferenceLabel.setText("Busca: " + controller.updatePreference());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addHobbyButton;
@@ -246,19 +267,19 @@ public class UserProfilePanel extends javax.swing.JPanel {
     private abd.p1.view.users.AvatarPanel avatarPanel1;
     private javax.swing.JButton birthDateButton;
     private javax.swing.JButton deleteHobbyButton;
+    private javax.swing.JTextArea descriptionTextArea;
     private javax.swing.JButton editHobbyButton;
     private javax.swing.JButton genderButton;
+    private javax.swing.JLabel genderLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton nameButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JButton preferenceButton;
+    private javax.swing.JLabel preferenceLabel;
     // End of variables declaration//GEN-END:variables
 }

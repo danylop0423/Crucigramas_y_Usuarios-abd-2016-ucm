@@ -1,16 +1,27 @@
 package abd.p1.view.users.profile;
 
+import abd.p1.controller.UsersController;
+
 /**
  *
  * @author David Labrador <davidlab@ucm.es>
  */
 public class EditableProfileWindow extends javax.swing.JDialog {
 
+    private UsersController controller;
+
     /**
      * Creates new form EditableProfileWindow
      */
     public EditableProfileWindow(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+
+    public EditableProfileWindow(UsersController controller) {
+        super((javax.swing.JDialog) null, true);
+        this.controller = controller;
+
         initComponents();
     }
 
@@ -24,7 +35,7 @@ public class EditableProfileWindow extends javax.swing.JDialog {
     private void initComponents() {
 
         passwordButton = new javax.swing.JButton();
-        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel();
+        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel(controller);
         undoButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
 

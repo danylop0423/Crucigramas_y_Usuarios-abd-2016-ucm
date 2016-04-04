@@ -32,7 +32,7 @@ public class UsersPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         DefaultListModel<Usuario> model = new DefaultListModel<>();
-        UsersController controller = new UsersController(model);
+        UsersController controller = new UsersController(model, null);
 
         searchPanel1 = new abd.p1.view.users.SearchPanel(controller, model);
         jPanel1 = new javax.swing.JPanel();
