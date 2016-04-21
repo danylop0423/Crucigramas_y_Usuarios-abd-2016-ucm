@@ -1,5 +1,12 @@
 package abd.p1;
 
+import abd.p1.controller.UsersController;
+import abd.p1.model.Usuario;
+import abd.p1.view.MainWindow;
+import abd.p1.view.users.profile.EditableProfileWindow;
+import java.sql.Timestamp;
+import javax.swing.*;
+
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -13,7 +20,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
  *
  */
 public class Main {
-    
+
     private static SessionFactory buildSessionFactory() {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
@@ -23,21 +30,42 @@ public class Main {
             e.printStackTrace();
             StandardServiceRegistryBuilder.destroy(registry);
             return null;
-        } 
+        }
     }
-   
-    
+
+
     public static void main(String[] args) {
 
         SessionFactory sf = null;
-        
+
         try {
-            sf = buildSessionFactory();
-            
+            // sf = buildSessionFactory();
+
             // Mostrar ventana de login y comprobar validez del usuario y contraseña.
             // Si son validos, mostrar ventana principal.
+            //LoginWindow loginW = new LoginWindow(new JFrame(), false);
+            //loginW.setVisible(true);
 
-        } catch (HibernateException e) {
+            Usuario logedUser = new Usuario(
+                    "",
+                    "",
+                    "Labrador",
+                    "Masculino",
+                    "Mujeres",
+                    new Timestamp(647418600000L),
+                    null,
+                    "Soy malote a más no poder.\nBusco gente similar para hacer maldades.",
+                    "",
+                    ""
+            );
+
+            DefaultListModel<Usuario> model = new DefaultListModel<>();
+            UsersController controller = new UsersController(model, logedUser);
+
+            MainWindow mainW = new MainWindow(controller, model);
+            mainW.setVisible(true);
+
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (sf != null) sf.close();

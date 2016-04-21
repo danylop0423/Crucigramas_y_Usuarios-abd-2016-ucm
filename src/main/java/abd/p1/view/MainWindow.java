@@ -6,7 +6,10 @@
 package abd.p1.view;
 
 import abd.p1.controller.QuestionsController;
+import abd.p1.controller.UsersController;
 import abd.p1.model.Pregunta;
+import abd.p1.model.Usuario;
+
 import javax.swing.DefaultListModel;
 
 /**
@@ -15,10 +18,21 @@ import javax.swing.DefaultListModel;
  */
 public class MainWindow extends javax.swing.JFrame {
 
+    DefaultListModel<Usuario> usersModel;
+    UsersController usersController;
+
     /**
      * Creates new form MainWindow
      */
+    public MainWindow(UsersController controller, DefaultListModel model) {
+        this.usersController = controller;
+        this.usersModel = model;
+        initComponents();
+    }
+
     public MainWindow() {
+        this.usersController = null;
+        this.usersModel = new DefaultListModel<Usuario>();
         initComponents();
     }
 
@@ -31,14 +45,14 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        DefaultListModel<Pregunta> model = new DefaultListModel<>();
-        QuestionsController controller = new QuestionsController(model);
+        DefaultListModel<Pregunta> questionsModel = new DefaultListModel<>();
+        QuestionsController questionsController = new QuestionsController(questionsModel);
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        usersPanel1 = new abd.p1.view.users.UsersPanel();
+        usersPanel1 = new abd.p1.view.users.UsersPanel(usersController, usersModel);
         jPanel2 = new javax.swing.JPanel();
-        questionsPanel1 = new abd.p1.view.questions.QuestionsPanel(model, controller);
+        questionsPanel1 = new abd.p1.view.questions.QuestionsPanel(questionsModel, questionsController);
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

@@ -1,6 +1,7 @@
 package abd.p1.view.users.profile;
 
 import abd.p1.controller.UsersController;
+import abd.p1.model.Usuario;
 
 /**
  *
@@ -9,6 +10,7 @@ import abd.p1.controller.UsersController;
 public class UserProfilePanel extends javax.swing.JPanel {
 
     private UsersController controller;
+    private Usuario selectedUser;
     private boolean editable;
 
     /**
@@ -30,6 +32,19 @@ public class UserProfilePanel extends javax.swing.JPanel {
         descriptionTextArea.setText(controller.getUserDescription());
     }
 
+    public UserProfilePanel(Usuario selectedUser) {
+        this.controller = null;
+        this.selectedUser = selectedUser;
+
+        initComponents();
+
+        nameLabel.setText(selectedUser.getNombre());
+        ageLabel.setText(selectedUser.calculateAge() + " años");
+        genderLabel.setText("Sexo: " + selectedUser.getGenero());
+        preferenceLabel.setText("Busca: " + selectedUser.getGenero_buscado());
+        descriptionTextArea.setText(selectedUser.getDescripcion());
+    }
+
     public boolean isEditable() {
         return editable;
     }
@@ -45,6 +60,7 @@ public class UserProfilePanel extends javax.swing.JPanel {
         addHobbyButton.setVisible(editable);
         nameButton.setVisible(editable);
         preferenceButton.setVisible(editable);
+        descriptionTextArea.setEditable(false);
     }
 
     /**

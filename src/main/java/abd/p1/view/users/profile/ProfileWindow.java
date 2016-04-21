@@ -1,16 +1,28 @@
 package abd.p1.view.users.profile;
 
+import abd.p1.controller.UsersController;
+import abd.p1.model.Usuario;
+
 /**
  *
  * @author David Labrador <davidlab@ucm.es>
  */
 public class ProfileWindow extends javax.swing.JDialog {
+    private UsersController controller;
+    private Usuario selectedUser;
 
     /**
      * Creates new form EditableProfileWindow
      */
     public ProfileWindow(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        //initComponents();
+    }
+
+    public ProfileWindow(UsersController controller, Usuario user) {
+        this(null, true);
+        this.controller = controller;
+        this.selectedUser = user;
         initComponents();
     }
 
@@ -25,7 +37,8 @@ public class ProfileWindow extends javax.swing.JDialog {
 
         followButton = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel();
+        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel(selectedUser);
+        userProfilePanel1.setEditable(false);
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -92,6 +105,7 @@ public class ProfileWindow extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

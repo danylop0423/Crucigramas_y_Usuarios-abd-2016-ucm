@@ -100,6 +100,10 @@ public class SearchPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    public Usuario getSelectedListItem() {
+        return userList.isSelectionEmpty() ? null : userList.getSelectedValue();
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBox1;

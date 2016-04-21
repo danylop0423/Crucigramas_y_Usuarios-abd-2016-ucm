@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -24,7 +24,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="passwordButton" min="-2" max="-2" attributes="0"/>
@@ -33,7 +33,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="undoButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="userProfilePanel1" alignment="1" pref="645" max="32767" attributes="0"/>
+                  <Component id="userProfilePanel1" alignment="1" pref="642" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

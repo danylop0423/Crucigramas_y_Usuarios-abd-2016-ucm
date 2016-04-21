@@ -46,6 +46,11 @@ public class EditableProfileWindow extends javax.swing.JDialog {
         userProfilePanel1.setEditable(true);
 
         undoButton.setText("Cancelar");
+        undoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undoButtonActionPerformed(evt);
+            }
+        });
 
         saveButton.setText("Guardar cambios");
 
@@ -54,7 +59,7 @@ public class EditableProfileWindow extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(passwordButton)
@@ -62,7 +67,7 @@ public class EditableProfileWindow extends javax.swing.JDialog {
                         .addComponent(saveButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(undoButton))
-                    .addComponent(userProfilePanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE))
+                    .addComponent(userProfilePanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -79,7 +84,13 @@ public class EditableProfileWindow extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void undoButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.setVisible(false);
+        this.dispose();
+    }
 
     /**
      * @param args the command line arguments

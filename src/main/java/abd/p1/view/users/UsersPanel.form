@@ -45,12 +45,12 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="updateProfileButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar mi perfil"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="showProfileButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver perfil seleccionado"/>
           </Properties>

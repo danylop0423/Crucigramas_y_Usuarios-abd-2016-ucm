@@ -7,6 +7,9 @@ package abd.p1.view.users;
 
 import abd.p1.controller.UsersController;
 import abd.p1.model.Usuario;
+import abd.p1.view.users.profile.EditableProfileWindow;
+import abd.p1.view.users.profile.ProfileWindow;
+
 import javax.swing.DefaultListModel;
 
 /**
@@ -14,11 +17,15 @@ import javax.swing.DefaultListModel;
  * @author David Labrador <davidlab@ucm.es>
  */
 public class UsersPanel extends javax.swing.JPanel {
+    private DefaultListModel<Usuario> userModel;
+    private UsersController controller;
 
     /**
      * Creates new form UsersPanel
      */
-    public UsersPanel() {
+    public UsersPanel(UsersController controller, DefaultListModel userModel) {
+        this.controller = controller;
+        this.userModel = userModel;
         initComponents();
     }
 
@@ -31,19 +38,27 @@ public class UsersPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        DefaultListModel<Usuario> model = new DefaultListModel<>();
-        UsersController controller = new UsersController(model, null);
-
-        searchPanel1 = new abd.p1.view.users.SearchPanel(controller, model);
+        searchPanel1 = new abd.p1.view.users.SearchPanel(controller, userModel);
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        updateProfileButton = new javax.swing.JButton();
+        showProfileButton = new javax.swing.JButton();
 
-        jButton2.setText("Modificar mi perfil");
-        jPanel1.add(jButton2);
+        updateProfileButton.setText("Modificar mi perfil");
+        updateProfileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateProfileButtonActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Ver perfil seleccionado");
-        jPanel1.add(jButton1);
+        jPanel1.add(updateProfileButton);
+
+        showProfileButton.setText("Ver perfil seleccionado");
+        showProfileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showProfileButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(showProfileButton);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -67,10 +82,23 @@ public class UsersPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void updateProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        EditableProfileWindow editableProfileW = new EditableProfileWindow(controller);
+        editableProfileW.setVisible(true);
+    }
+
+    private void showProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Usuario selectedUser = searchPanel1.getSelectedListItem();
+
+        if(selectedUser != null) {
+            ProfileWindow profileW = new ProfileWindow(controller, selectedUser);
+            profileW.setVisible(true);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton showProfileButton;
+    private javax.swing.JButton updateProfileButton;
     private javax.swing.JPanel jPanel1;
     private abd.p1.view.users.SearchPanel searchPanel1;
     // End of variables declaration//GEN-END:variables
