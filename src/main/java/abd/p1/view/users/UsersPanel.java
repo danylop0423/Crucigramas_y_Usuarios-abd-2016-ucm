@@ -10,7 +10,7 @@ import abd.p1.model.Usuario;
 import abd.p1.view.users.profile.EditableProfileWindow;
 import abd.p1.view.users.profile.ProfileWindow;
 
-import javax.swing.DefaultListModel;
+import javax.swing.*;
 
 /**
  *
@@ -93,6 +93,11 @@ public class UsersPanel extends javax.swing.JPanel {
         if(selectedUser != null) {
             ProfileWindow profileW = new ProfileWindow(controller, selectedUser);
             profileW.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Debe seleccionar un usuario de la lista",
+                    "Error",
+                    JOptionPane.WARNING_MESSAGE);
         }
     }
 
