@@ -1,29 +1,24 @@
 package abd.p1.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Msj_invitacion extends Mensaje {
-	private String xdefecto;
+	
+	@ManyToOne
 	private Pregunta pregunta;
 	
-	public Msj_invitacion(Integer id, Usuario emisor, Usuario receptor, Timestamp fecha, boolean leido) {
+	public Msj_invitacion() { }
+	
+	public Msj_invitacion(Integer id, Usuario emisor, Usuario receptor, Date fecha, boolean leido) {
 		super(id, emisor, receptor, fecha, leido);
-		
+		pregunta=null;
 	}
 
-	/**
-	 * @return the xdefecto
-	 */
-	public String getXdefecto() {
-		return xdefecto;
-	}
-
-	/**
-	 * @param xdefecto the xdefecto to set
-	 */
-	public void setXdefecto(String xdefecto) {
-		this.xdefecto = xdefecto;
-	}
+	
 
 	/**
 	 * @return the pregunta

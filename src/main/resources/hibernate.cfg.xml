@@ -19,6 +19,9 @@
 	<mapping class="abd.p1.model.Usuario"/>
 	<mapping class="abd.p1.model.Respondidas"/>
 	<mapping class="abd.p1.model.Mensaje"/>
+	<mapping class="abd.p1.model.Msj_solicitud"/>
+	<mapping class="abd.p1.model.Msj_texto"/>
+	<mapping class="abd.p1.model.Msj_invitacion"/>
 
 	
   </session-factory>

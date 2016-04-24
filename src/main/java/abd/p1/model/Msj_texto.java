@@ -1,7 +1,11 @@
 package abd.p1.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class Msj_texto extends Mensaje {
 	/**
 	 * @param id
@@ -10,9 +14,14 @@ public class Msj_texto extends Mensaje {
 	 * @param fecha
 	 * @param leido
 	 */
+	@Column(name="texto", length= 146, nullable=false)
 	private String texto;
-	public Msj_texto(Integer id, Usuario emisor, Usuario receptor, Timestamp fecha, boolean leido) {
+	
+	public Msj_texto(){ }
+	
+	public Msj_texto(Integer id, Usuario emisor, Usuario receptor, Date fecha, boolean leido, String txt) {
 		super(id, emisor, receptor, fecha, leido);
+		this.texto=txt;
 	}
 	/**
 	 * @return the texto

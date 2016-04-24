@@ -31,6 +31,7 @@ public class Mensaje {
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
    
+	@Column(name="leído", nullable=false)
 	private boolean leido;
 
 	 public Mensaje(){
