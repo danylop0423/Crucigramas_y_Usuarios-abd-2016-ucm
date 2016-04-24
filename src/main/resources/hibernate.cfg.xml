@@ -14,6 +14,11 @@
 
     <!-- Añadir aquí las anotaciones mapping -->
     <!-- <mapping class=""/> -->
-
+	<mapping class="abd.p1.model.Pregunta"/>
+	<mapping class="abd.p1.model.Opcion"/>
+	<mapping class="abd.p1.model.Respondidas"/>
+	<mapping class="abd.p1.model.Mensaje"/>
+	<mapping class="abd.p1.model.Usuario"/>
+	
   </session-factory>
 </hibernate-configuration>
