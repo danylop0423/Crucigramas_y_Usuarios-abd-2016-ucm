@@ -1,178 +1,251 @@
 package abd.p1.model;
 
-import java.sql.Timestamp;
+
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name= "usuarios")
 public class Usuario {
+	@Id
+	@Column(name="email", length=50)
+	private String email;
+	
+	@Column(name="password" , length=10, nullable= false )
+	private String password;
+	
+	@Column(name="nombre" , length=50, nullable= false )
+	private String nombre;
+	
+	@Column(name="genero" , length=20, nullable= false )
+	private String genero;
+	
+	@Column(name="genero_buscado" , length=20, nullable= false )
+	private String genero_buscado;
+	
+	@Column(name="fecha_nacimiento" , nullable=true )
+	@Temporal(TemporalType.DATE)
+	private Date fecha_nac; 
 
-    private String email;
-    private String password;
-    private String nombre;
-    private String genero;
-    private String genero_buscado;
-    private Timestamp fecha_nac;
-    private byte[] foto;
-    private String descripcion;
-    private String latitud;
-    private String longitud;
-    private List<Mensaje> mensajes;
-    private List<Usuario> amigos;
-    private List<String> aficiones;
+	@Lob
+	private byte[ ] foto;
+	
+	@Column(name="descripcion" , length=146, nullable= false )
+	private String descripcion;
+	
+	@Column(name="latitud" , length=10, nullable= false )
+	private String latitud;
+	
+	@Column(name="longitud" , length=10, nullable= false )
+	private String longitud;
+	
+	
+	//private List<Mensaje> mensajes;
+	@OneToMany(mappedBy="usuario")
+	private List<Respondidas> respondidas;
 
-    public Usuario(String email, String password, String nombre, String genero, String genero_buscado,
-            Timestamp fecha_nac, byte[] foto, String descripcion, String latitud, String longitud) {
-        this.email = email;
-        this.password = password;
-        this.nombre = nombre;
-        this.genero = genero;
-        this.genero_buscado = genero_buscado;
-        this.fecha_nac = fecha_nac;
-        this.foto = foto;
-        this.descripcion = descripcion;
-        this.latitud = latitud;
-        this.longitud = longitud;
-        this.mensajes = new ArrayList<>();
-        this.amigos = new ArrayList<>();
-        this.aficiones = new ArrayList<>();
-    }
+	@ManyToMany
+	private List<Usuario> amigos;
+	
+	
+	@ElementCollection
+	private List<String> aficiones;
 
-    public Usuario() {
-    }
+	public Usuario(){
+		//mensajes=new ArrayList<>();
+		respondidas=new ArrayList<>();
+		amigos= new ArrayList<>();
+		aficiones=	new ArrayList<>();	
 
-    public String getEmail() {
-        return email;
-    }
+	}
+	
+	public Usuario(String email, String password, String nombre, String genero, String genero_buscado,
+			Date fecha_nac, byte[] foto, String descripcion, String latitud, String longitud) {
+		this.email = email;
+		this.password = password;
+		this.nombre = nombre;
+		this.genero = genero;
+		this.genero_buscado = genero_buscado;
+		this.fecha_nac = fecha_nac;
+		this.foto = foto;
+		this.descripcion = descripcion;
+		this.latitud = latitud;
+		this.longitud = longitud;
+		//this.mensajes= new ArrayList<>();
+		this.respondidas=new ArrayList<>();
+		this.amigos =new ArrayList<>();
+		this.aficiones = new ArrayList<>();
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public String getGenero() {
-        return genero;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
+	public String getGenero() {
+		return genero;
+	}
 
-    public String getGenero_buscado() {
-        return genero_buscado;
-    }
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
 
-    public void setGenero_buscado(String genero_buscado) {
-        this.genero_buscado = genero_buscado;
-    }
+	public String getGenero_buscado() {
+		return genero_buscado;
+	}
 
-    public Timestamp getFecha_nac() {
-        return fecha_nac;
-    }
+	public void setGenero_buscado(String genero_buscado) {
+		this.genero_buscado = genero_buscado;
+	}
 
-    public void setFecha_nac(Timestamp fecha_nac) {
-        this.fecha_nac = fecha_nac;
-    }
+	public Date getFecha_nac() {
+		return fecha_nac;
+	}
 
-    public byte[] getFoto() {
-        return foto;
-    }
+	public void setFecha_nac(Date fecha_nac) {
+		this.fecha_nac = fecha_nac;
+	}
 
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
+	public byte[] getFoto() {
+		return foto;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public String getLatitud() {
-        return latitud;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
-    }
+	public String getLatitud() {
+		return latitud;
+	}
 
-    public String getLongitud() {
-        return longitud;
-    }
+	public void setLatitud(String latitud) {
+		this.latitud = latitud;
+	}
 
-    public void setLongitud(String longitud) {
-        this.longitud = longitud;
-    }
+	public String getLongitud() {
+		return longitud;
+	}
 
-    public List<Usuario> getAmigos() {
-        return amigos;
-    }
+	public void setLongitud(String longitud) {
+		this.longitud = longitud;
+	}
+	
+	
+	
+	public List<Usuario> getAmigos() {
+		return amigos;
+	}
+	
+	public void addAmigo(Usuario u) {
+		amigos.add(u);
+	}
+	
+	public void removeAmigo(Usuario u) {
+		amigos.remove(u);
+	}
+	
+	public int getNumAmigo() {
+		return amigos.size();
+	}
 
-    public void addAmigo(Usuario u) {
-        amigos.add(u);
-    }
+	/*
+	public List<Mensaje> getMensajes() {
+		return mensajes;
+	}
+	
+	public void addMensaje(Mensaje m) {
+		mensajes.add(m);
+	}
+	
+	public void removeMensaje(Mensaje m) {
+		mensajes.remove(m);
+	}
+	
+	public int getNumMensajes() {
+		return mensajes.size();
+	}
+*/
 
-    public void removeAmigo(Usuario u) {
-        amigos.remove(u);
-    }
+	public List<Respondidas> getMensajes() {
+		return respondidas;
+	}
+	
+	public void addRespondida(Respondidas m) {
+		respondidas.add(m);
+	}
+	
+	public void removeRespondidas(Respondidas m) {
+		respondidas.remove(m);
+	}
+	
+	public int getNumRespondidas() {
+		return respondidas.size();
+	}
 
-    public int getNumAmigo() {
-        return amigos.size();
-    }
-
-    public List<Mensaje> getMensajes() {
-        return mensajes;
-    }
-
-    public void addMensaje(Mensaje m) {
-        mensajes.add(m);
-    }
-
-    public void removeMensaje(Mensaje m) {
-        mensajes.remove(m);
-    }
-
-    public int getNumMensajes() {
-        return mensajes.size();
-    }
-
-    public List<String> getAficiones() {
-        return aficiones;
-    }
-
-    public void addAficion(String a) {
-        aficiones.add(a);
-    }
-
-    public void removeAficion(String a) {
-        aficiones.remove(a);
-    }
-
-    public int getNumAficiones() {
-        return aficiones.size();
-    }
+//--------------------------------------	
+	public List<String> getAficiones() {
+		return aficiones;
+	}
+	
+	public void addAficion(String a) {
+		aficiones.add(a);
+	}
+	
+	public void removeAficion(String a) {
+		aficiones.remove(a);
+	}
+	
+	public int getNumAficiones() {
+		return aficiones.size();
+	}
 
     public int calculateAge() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY");
-        Timestamp now = new Timestamp(System.currentTimeMillis());
+        Date now = new Date(System.currentTimeMillis());
 
-        return Integer.parseInt(dateFormat.format((Timestamp) now)) - Integer.parseInt(dateFormat.format((Timestamp) fecha_nac));
+        return Integer.parseInt(dateFormat.format((Date) now)) - Integer.parseInt(dateFormat.format((Date) fecha_nac));
     }
+
+
 }

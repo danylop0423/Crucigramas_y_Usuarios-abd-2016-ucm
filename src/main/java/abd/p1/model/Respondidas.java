@@ -1,17 +1,33 @@
 package abd.p1.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 
+@IdClass(RespondidasClave.class)
+@Entity
 public class Respondidas {
+	  
+	@ManyToOne
+	@Id
 	private Usuario usuario;
+	
+	@Column(name="relevancia", length=2, nullable= false)
 	private Integer relevancia;
-	private List<Opcion> respondidas;
-
-	public Respondidas(Usuario usuario, Integer relevancia) {
+	
+	@Id
+	@ManyToOne
+	private Opcion respondida;
+	
+	public Respondidas() {
+		}
+	
+	public Respondidas(Usuario usuario, Integer relevancia, Opcion resp) {
 		this.usuario = usuario;
 		this.relevancia = relevancia;
-		this.respondidas = new ArrayList<>();
+		this.setRespondida(resp);
 	}
 
 	public Usuario getUsuario() {
@@ -30,20 +46,13 @@ public class Respondidas {
 		this.relevancia = relevancia;
 	}
 
-	public List<Opcion> getRespondidas() {
-		return respondidas;
+	public Opcion getRespondida() {
+		return respondida;
 	}
 
-	public void addRespondida(Opcion o) {
-		respondidas.add(o);
+	public void setRespondida(Opcion respondida) {
+		this.respondida = respondida;
 	}
 
-	public void removeRespondida(Opcion o) {
-		respondidas.remove(o);
-	}
-
-	public int getNumRespondidas() {
-		return respondidas.size();
-	}
-
+		
 }

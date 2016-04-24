@@ -1,15 +1,43 @@
 package abd.p1.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Inheritance (strategy= InheritanceType.JOINED)
 public class Mensaje {
+	@Id
+	@Column(name="id", length=10)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
    private Integer id;
+	
+	@ManyToOne
    private Usuario emisor;
-   private Usuario receptor;
-   private Timestamp fecha;
-   private boolean leido;
+   
+	@ManyToOne
+	private Usuario receptor;
+   
+	@Column(name="fecha" , nullable=true )
+	@Temporal(TemporalType.DATE)
+	private Date fecha;
+   
+	private boolean leido;
 
-   public Mensaje(Integer id, Usuario emisor, Usuario receptor, Timestamp fecha, boolean leido) {
+	 public Mensaje(){
+		 
+	 }
+	
+   public Mensaje(Integer id, Usuario emisor, Usuario receptor, Date fecha, boolean leido) {
 	this.id = id;
 	this.emisor = emisor;
 	this.receptor = receptor;
@@ -62,14 +90,14 @@ public void setReceptor(Usuario receptor) {
 /**
  * @return the fecha
  */
-public Timestamp getFecha() {
+public Date getFecha() {
 	return fecha;
 }
 
 /**
  * @param fecha the fecha to set
  */
-public void setFecha(Timestamp fecha) {
+public void setFecha(Date fecha) {
 	this.fecha = fecha;
 }
 
@@ -86,7 +114,7 @@ public boolean isLeido() {
 public void setLeido(boolean leido) {
 	this.leido = leido;
 }
-
-
-
+   
+   
+   
 }

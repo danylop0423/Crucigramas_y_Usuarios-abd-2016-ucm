@@ -3,7 +3,7 @@
 <hibernate-configuration>
   <session-factory>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="connection.url">jdbc:mysql://localhost/practica1</property>
+    <property name="connection.url">jdbc:mysql://localhost/practica1user_712</property>
     <property name="connection.username">P1</property>
     <property name="connection.password">PasswordP1</property>
     <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
@@ -14,11 +14,12 @@
 
     <!-- Añadir aquí las anotaciones mapping -->
     <!-- <mapping class=""/> -->
-	<mapping class="abd.p1.model.Pregunta"/>
+	 <mapping class="abd.p1.model.Pregunta"/>
 	<mapping class="abd.p1.model.Opcion"/>
+	<mapping class="abd.p1.model.Usuario"/>
 	<mapping class="abd.p1.model.Respondidas"/>
 	<mapping class="abd.p1.model.Mensaje"/>
-	<mapping class="abd.p1.model.Usuario"/>
+
 	
   </session-factory>
 </hibernate-configuration>

@@ -1,12 +1,35 @@
 package abd.p1.model;
 
-public class Opcion {
-	private Integer id;
-	private Pregunta preguntaMadre;
-	private int numeroOrden;
-	private String texto;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name= "respuestas")
+public class Opcion {
+	
+	@Id
+	@Column(name="numero", length=10)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Integer id;
+	
+	//@Column(name="n_pregunta", length=10, nullable= false)
+	@ManyToOne
+	private Pregunta preguntaMadre;
+	
+	@Column(name="numeroR", length=10, nullable= false)
+	private int numeroOrden;
+	
+	@Column(name="respuesta" , length=146, nullable= false )
+	private String texto;
+	
+	
 	public Opcion() {
+		
 	}
 
 	public Opcion(Integer i,int num,Pregunta preg,String txt) {
@@ -16,20 +39,14 @@ public class Opcion {
 		numeroOrden=num;
 		texto=txt;
 	}
-	/**
-	 * @return the id
-	 */
+
 	public Integer getId() {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public Pregunta getPreguntaMadre() {
 		return preguntaMadre;
 	}
@@ -53,10 +70,13 @@ public class Opcion {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "(" + numeroOrden + ") " + texto;
 	}
+
+//------------------------------------	
+
 }
