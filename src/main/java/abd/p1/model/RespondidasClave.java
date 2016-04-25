@@ -11,8 +11,13 @@ public class RespondidasClave implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public boolean equals(RespondidasClave res){
-		return this.usuario.equals(res.usuario) && this.respondida.equals(res.respondida);	
+	public boolean equals(Object o){
+		if (o == this) return true;
+		if(o == null) return false;
+		if(!(o instanceof RespondidasClave)) return false;
+		return(this.usuario==((RespondidasClave)o).usuario  &&
+				this.respondida==((RespondidasClave)o).respondida );
+	
 		 }
 
 	public int hashCode(){
