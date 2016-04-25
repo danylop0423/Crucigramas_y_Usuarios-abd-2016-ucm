@@ -5,6 +5,7 @@
  */
 package abd.p1.view.users;
 
+import abd.p1.controller.ProfileController;
 import abd.p1.controller.UsersController;
 import abd.p1.model.Usuario;
 import abd.p1.view.users.profile.EditableProfileWindow;
@@ -91,7 +92,9 @@ public class UsersPanel extends javax.swing.JPanel {
         Usuario selectedUser = searchPanel1.getSelectedListItem();
 
         if(selectedUser != null) {
-            ProfileWindow profileW = new ProfileWindow(controller, selectedUser);
+            DefaultListModel<String> hobbiesModel = new DefaultListModel<>();
+            ProfileController profileController = new ProfileController(hobbiesModel, selectedUser);
+            ProfileWindow profileW = new ProfileWindow(profileController, hobbiesModel);
             profileW.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this,

@@ -1,7 +1,7 @@
 package abd.p1.view.users.profile;
 
-import abd.p1.controller.UsersController;
-import abd.p1.model.Usuario;
+import abd.p1.controller.ProfileController;
+import javax.swing.*;
 
 /**
  *
@@ -9,8 +9,8 @@ import abd.p1.model.Usuario;
  */
 public class UserProfilePanel extends javax.swing.JPanel {
 
-    private UsersController controller;
-    private Usuario selectedUser;
+    private ProfileController controller;
+    private DefaultListModel<String> hobbiesModel;
     private boolean editable;
 
     /**
@@ -20,8 +20,9 @@ public class UserProfilePanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public UserProfilePanel(UsersController controller) {
+    public UserProfilePanel(ProfileController controller, DefaultListModel model) {
         this.controller = controller;
+        this.hobbiesModel = model;
 
         initComponents();
 
@@ -30,19 +31,7 @@ public class UserProfilePanel extends javax.swing.JPanel {
         genderLabel.setText("Sexo: " + controller.getUserGender());
         preferenceLabel.setText("Busca: " + controller.getUserPreference());
         descriptionTextArea.setText(controller.getUserDescription());
-    }
-
-    public UserProfilePanel(Usuario selectedUser) {
-        this.controller = null;
-        this.selectedUser = selectedUser;
-
-        initComponents();
-
-        nameLabel.setText(selectedUser.getNombre());
-        ageLabel.setText(selectedUser.calculateAge() + " años");
-        genderLabel.setText("Sexo: " + selectedUser.getGenero());
-        preferenceLabel.setText("Busca: " + selectedUser.getGenero_buscado());
-        descriptionTextArea.setText(selectedUser.getDescripcion());
+        jList1.setModel(model);
     }
 
     public boolean isEditable() {
@@ -138,10 +127,25 @@ public class UserProfilePanel extends javax.swing.JPanel {
         jLabel2.setText("Aficiones:");
 
         addHobbyButton.setText("Añadir afición");
+        addHobbyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addHobbyButtonActionPerformed(evt);
+            }
+        });
 
         deleteHobbyButton.setText("Eliminar seleccionada");
+        deleteHobbyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteHobbyButtonActionPerformed(evt);
+            }
+        });
 
         editHobbyButton.setText("Editar seleccionada");
+        editHobbyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editHobbyButtonActionPerformed(evt);
+            }
+        });
 
         genderLabel.setText("Sexo: Masculino");
 
@@ -274,6 +278,31 @@ public class UserProfilePanel extends javax.swing.JPanel {
 
     private void preferenceButtonActionPerformed(java.awt.event.ActionEvent evt) {
         preferenceLabel.setText("Busca: " + controller.updatePreference());
+    }
+
+
+    private void addHobbyButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        controller.addNewHobby();
+    }
+
+    private void deleteHobbyButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        String selectedItem = jList1.getSelectedValue();
+
+        if (selectedItem != null && selectedItem != "") {
+            controller.removeHobby(selectedItem);
+        } else {
+            // TODO: Show error message!!
+        }
+    }
+
+    private void editHobbyButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        String selectedItem = jList1.getSelectedValue();
+
+        if (selectedItem != null && selectedItem != "") {
+            controller.updateHobby(selectedItem);
+        } else {
+            // TODO: Show error message!!
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

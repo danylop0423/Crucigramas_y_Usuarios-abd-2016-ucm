@@ -3,9 +3,7 @@ package abd.p1.model;
 
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -74,7 +72,7 @@ public class Usuario {
 	}
 	
 	public Usuario(String email, String password, String nombre, String genero, String genero_buscado,
-			Date fecha_nac, byte[] foto, String descripcion, String latitud, String longitud) {
+			Date fecha_nac, byte[] foto, String descripcion, String[] aficiones, String latitud, String longitud) {
 		this.email = email;
 		this.password = password;
 		this.nombre = nombre;
@@ -89,6 +87,7 @@ public class Usuario {
 		this.respondidas=new ArrayList<>();
 		this.amigos =new ArrayList<>();
 		this.aficiones = new ArrayList<>();
+		Collections.addAll(this.aficiones, aficiones);
 	}
 
 	public String getEmail() {
@@ -170,9 +169,7 @@ public class Usuario {
 	public void setLongitud(String longitud) {
 		this.longitud = longitud;
 	}
-	
-	
-	
+
 	public List<Usuario> getAmigos() {
 		return amigos;
 	}
@@ -234,6 +231,10 @@ public class Usuario {
 	
 	public void removeAficion(String a) {
 		aficiones.remove(a);
+	}
+
+	public void updateAficion(String a, String value) {
+		aficiones.set(aficiones.indexOf(a), value);
 	}
 	
 	public int getNumAficiones() {

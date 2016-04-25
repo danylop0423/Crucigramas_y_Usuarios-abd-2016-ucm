@@ -55,6 +55,7 @@ public class Main {
                     new Timestamp(647418600000L),
                     null,
                     "Soy malote a más no poder.\nBusco gente similar para hacer maldades.",
+                    new String[]{"Hechizos", "Artes oscuras", "Pócimas", "Brujeria", "Cuidar gatitos"},
                     "",
                     ""
             );

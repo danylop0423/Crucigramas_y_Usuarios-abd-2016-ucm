@@ -1,6 +1,9 @@
 package abd.p1.view.users.profile;
 
+import abd.p1.controller.EditableProfileController;
 import abd.p1.controller.UsersController;
+
+import javax.swing.*;
 
 /**
  *
@@ -35,9 +38,12 @@ public class EditableProfileWindow extends javax.swing.JDialog {
     private void initComponents() {
 
         passwordButton = new javax.swing.JButton();
-        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel(controller);
         undoButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
+
+        DefaultListModel<String> hobbiesModel = new DefaultListModel<>();
+        EditableProfileController profileController = new EditableProfileController(hobbiesModel, controller.getLoggedUser());
+        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel(profileController, hobbiesModel);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
