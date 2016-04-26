@@ -81,4 +81,8 @@ public class EditableProfileController extends ProfileController {
             hobbiesModel.set(hobbiesModel.indexOf(hobby), newHobbyValue);
         }
     }
+
+    public void updatePassword(String pass) {
+        user.setPassword(pass);
+    }
 }

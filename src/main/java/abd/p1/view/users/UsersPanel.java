@@ -5,6 +5,7 @@
  */
 package abd.p1.view.users;
 
+import abd.p1.controller.EditableProfileController;
 import abd.p1.controller.ProfileController;
 import abd.p1.controller.UsersController;
 import abd.p1.model.Usuario;
@@ -84,7 +85,9 @@ public class UsersPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        EditableProfileWindow editableProfileW = new EditableProfileWindow(controller);
+        DefaultListModel<String> model = new DefaultListModel<>();
+        EditableProfileController controller = new EditableProfileController(model, this.controller.getLoggedUser());
+        EditableProfileWindow editableProfileW = new EditableProfileWindow(controller, model);
         editableProfileW.setVisible(true);
     }
 

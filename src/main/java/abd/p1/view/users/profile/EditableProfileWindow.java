@@ -11,7 +11,8 @@ import javax.swing.*;
  */
 public class EditableProfileWindow extends javax.swing.JDialog {
 
-    private UsersController controller;
+    private EditableProfileController controller;
+    private DefaultListModel<String> model;
 
     /**
      * Creates new form EditableProfileWindow
@@ -21,9 +22,10 @@ public class EditableProfileWindow extends javax.swing.JDialog {
         initComponents();
     }
 
-    public EditableProfileWindow(UsersController controller) {
+    public EditableProfileWindow(EditableProfileController controller, DefaultListModel<String> model) {
         super((javax.swing.JDialog) null, true);
         this.controller = controller;
+        this.model = model;
 
         initComponents();
     }
@@ -41,13 +43,16 @@ public class EditableProfileWindow extends javax.swing.JDialog {
         undoButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
 
-        DefaultListModel<String> hobbiesModel = new DefaultListModel<>();
-        EditableProfileController profileController = new EditableProfileController(hobbiesModel, controller.getLoggedUser());
-        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel(profileController, hobbiesModel);
+        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel(controller, model);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         passwordButton.setText("Cambiar contraseña");
+        passwordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordButtonActionPerformed(evt);
+            }
+        });
 
         userProfilePanel1.setEditable(true);
 
@@ -92,6 +97,11 @@ public class EditableProfileWindow extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void passwordButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        PasswordUpdateDialog updatePassDialog = new PasswordUpdateDialog(controller);
+        updatePassDialog.setVisible(true);
+    }
 
     private void undoButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.setVisible(false);
