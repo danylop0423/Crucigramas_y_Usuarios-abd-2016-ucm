@@ -78,8 +78,7 @@ public class UserProfilePanel extends javax.swing.JPanel {
         preferenceLabel = new javax.swing.JLabel();
         genderButton = new javax.swing.JButton();
         preferenceButton = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
 
         javax.swing.GroupLayout avatarPanel1Layout = new javax.swing.GroupLayout(avatarPanel1);
@@ -165,14 +164,7 @@ public class UserProfilePanel extends javax.swing.JPanel {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Hechizos", "Artes oscuras", "Pócimas", "Brujería", "Ciudar gatitos" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList1);
-
-        jScrollPane3.setViewportView(jScrollPane2);
+        jScrollPane4.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -181,6 +173,7 @@ public class UserProfilePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -189,37 +182,27 @@ public class UserProfilePanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nameLabel)
                                     .addComponent(ageLabel)))
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(genderLabel)
+                            .addComponent(preferenceLabel)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(preferenceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(genderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(editHobbyButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deleteHobbyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(nameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(birthDateButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(avatarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(deleteHobbyButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                            .addComponent(editHobbyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addHobbyButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(genderLabel)
-                        .addGap(304, 304, 304)
-                        .addComponent(genderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(preferenceLabel)
-                        .addGap(313, 313, 313)
-                        .addComponent(preferenceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(avatarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addHobbyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nameButton)
@@ -236,18 +219,20 @@ public class UserProfilePanel extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(addHobbyButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(deleteHobbyButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(editHobbyButton))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editHobbyButton)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(genderButton)
                     .addComponent(genderLabel))
@@ -267,25 +252,15 @@ public class UserProfilePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_avatarButtonActionPerformed
 
-    private void birthDateButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void birthDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_birthDateButtonActionPerformed
         ageLabel.setText(controller.updateBirthDate() + " años");
-    }
+    }//GEN-LAST:event_birthDateButtonActionPerformed
 
-    private void genderButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        genderLabel.setText("Sexo: " + controller.updateGender());
-
-    }
-
-    private void preferenceButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        preferenceLabel.setText("Busca: " + controller.updatePreference());
-    }
-
-
-    private void addHobbyButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void addHobbyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHobbyButtonActionPerformed
         controller.addNewHobby();
-    }
+    }//GEN-LAST:event_addHobbyButtonActionPerformed
 
-    private void deleteHobbyButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void deleteHobbyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteHobbyButtonActionPerformed
         String selectedItem = jList1.getSelectedValue();
 
         if (selectedItem != null && selectedItem != "") {
@@ -293,9 +268,9 @@ public class UserProfilePanel extends javax.swing.JPanel {
         } else {
             // TODO: Show error message!!
         }
-    }
+    }//GEN-LAST:event_deleteHobbyButtonActionPerformed
 
-    private void editHobbyButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void editHobbyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editHobbyButtonActionPerformed
         String selectedItem = jList1.getSelectedValue();
 
         if (selectedItem != null && selectedItem != "") {
@@ -303,7 +278,15 @@ public class UserProfilePanel extends javax.swing.JPanel {
         } else {
             // TODO: Show error message!!
         }
-    }
+    }//GEN-LAST:event_editHobbyButtonActionPerformed
+
+    private void genderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderButtonActionPerformed
+        genderLabel.setText("Sexo: " + controller.updateGender());
+    }//GEN-LAST:event_genderButtonActionPerformed
+
+    private void preferenceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preferenceButtonActionPerformed
+        preferenceLabel.setText("Busca: " + controller.updatePreference());
+    }//GEN-LAST:event_preferenceButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addHobbyButton;
@@ -320,8 +303,7 @@ public class UserProfilePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton nameButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JButton preferenceButton;

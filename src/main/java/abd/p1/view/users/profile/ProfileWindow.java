@@ -1,7 +1,6 @@
 package abd.p1.view.users.profile;
 
 import abd.p1.controller.ProfileController;
-
 import javax.swing.*;
 
 /**
@@ -41,17 +40,19 @@ public class ProfileWindow extends javax.swing.JDialog {
 
         followButton = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel();
+        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel(controller, hobbiesModel);
         jPanel1 = new javax.swing.JPanel();
         compatibilityPanel1 = new abd.p1.view.users.profile.CompatibilityPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         followButton.setText("Enviar petición de amistad");
 
         userProfilePanel1.setDoubleBuffered(false);
+        userProfilePanel1.setEditable(false);
         jTabbedPane1.addTab("Perfil", userProfilePanel1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
