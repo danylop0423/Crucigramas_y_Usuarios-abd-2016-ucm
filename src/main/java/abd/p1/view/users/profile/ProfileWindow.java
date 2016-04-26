@@ -1,7 +1,6 @@
 package abd.p1.view.users.profile;
 
 import abd.p1.controller.ProfileController;
-import abd.p1.model.Usuario;
 
 import javax.swing.*;
 
@@ -42,9 +41,9 @@ public class ProfileWindow extends javax.swing.JDialog {
 
         followButton = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel(controller, hobbiesModel);
-        userProfilePanel1.setEditable(false);
+        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel();
         jPanel1 = new javax.swing.JPanel();
+        compatibilityPanel1 = new abd.p1.view.users.profile.CompatibilityPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -59,11 +58,16 @@ public class ProfileWindow extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(compatibilityPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 474, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(compatibilityPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Compatibilidad", jPanel1);
@@ -157,6 +161,7 @@ public class ProfileWindow extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private abd.p1.view.users.profile.CompatibilityPanel compatibilityPanel1;
     private javax.swing.JButton followButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
