@@ -17,10 +17,7 @@ import javax.swing.ImageIcon;
 public class AvatarPanel extends javax.swing.JPanel {
     private static final int SIZE = 64;
     private static final ImageIcon DEFAULT_ICON = 
-            new ImageIcon("/src/adb/p1/view/users/defaultAvatar.jpg");
-            /*new ImageIcon(AvatarPanel.class.getResource("defaultAvatar.jpg")) != null
-                ? new ImageIcon(AvatarPanel.class.getResource("defaultAvatar.jpg"))
-                : new ImageIcon(AvatarPanel.class.getClassLoader().getResource("defaultAvatar.jpg"));*/
+            new ImageIcon("./src/main/resources/defaultAvatar.jpg");
     
     private ImageIcon icon;
     private Image rescaledIcon;
