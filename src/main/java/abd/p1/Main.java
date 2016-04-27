@@ -3,11 +3,10 @@ package abd.p1;
 import abd.p1.controller.UsersController;
 import abd.p1.model.Usuario;
 import abd.p1.view.MainWindow;
-import abd.p1.view.users.profile.EditableProfileWindow;
+
 import java.sql.Timestamp;
 import javax.swing.*;
 
-import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;

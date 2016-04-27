@@ -1,4 +1,4 @@
-package abd.p1.view.users.profile;
+package abd.p1.view.profile.selected;
 
 import abd.p1.controller.ProfileController;
 import javax.swing.*;
@@ -7,19 +7,19 @@ import javax.swing.*;
  *
  * @author David Labrador <davidlab@ucm.es>
  */
-public class ProfileWindow extends javax.swing.JDialog {
+public class SelectedProfileWindow extends javax.swing.JDialog {
     private ProfileController controller;
     private DefaultListModel<String> hobbiesModel;
 
     /**
      * Creates new form EditableProfileWindow
      */
-    public ProfileWindow(java.awt.Frame parent, boolean modal) {
+    public SelectedProfileWindow(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         //initComponents();
     }
 
-    public ProfileWindow(ProfileController controller, DefaultListModel<String> model) {
+    public SelectedProfileWindow(ProfileController controller, DefaultListModel<String> model) {
         this(null, true);
         this.controller = controller;
         this.hobbiesModel = model;
@@ -40,12 +40,11 @@ public class ProfileWindow extends javax.swing.JDialog {
 
         followButton = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel(controller, hobbiesModel);
+        userProfilePanel1 = new abd.p1.view.profile.UserProfilePanel(controller, hobbiesModel);
         jPanel1 = new javax.swing.JPanel();
-        compatibilityPanel1 = new abd.p1.view.users.profile.CompatibilityPanel();
+        compatibilityPanel1 = new CompatibilityPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -135,21 +134,23 @@ public class ProfileWindow extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProfileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectedProfileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProfileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectedProfileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProfileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectedProfileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProfileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectedProfileWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ProfileWindow dialog = new ProfileWindow(new javax.swing.JFrame(), true);
+                SelectedProfileWindow dialog = new SelectedProfileWindow(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -162,12 +163,12 @@ public class ProfileWindow extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private abd.p1.view.users.profile.CompatibilityPanel compatibilityPanel1;
+    private CompatibilityPanel compatibilityPanel1;
     private javax.swing.JButton followButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private abd.p1.view.users.profile.UserProfilePanel userProfilePanel1;
+    private abd.p1.view.profile.UserProfilePanel userProfilePanel1;
     // End of variables declaration//GEN-END:variables
 }

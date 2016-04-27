@@ -1,4 +1,4 @@
-package abd.p1.view.users.profile;
+package abd.p1.view.profile;
 
 import abd.p1.controller.ProfileController;
 import javax.swing.*;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package abd.p1.view.users.profile;
+package abd.p1.view.profile.editable;
 
 import abd.p1.controller.EditableProfileController;
 import javax.swing.*;

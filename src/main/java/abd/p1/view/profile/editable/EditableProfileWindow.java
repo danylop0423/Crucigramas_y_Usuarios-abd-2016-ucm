@@ -1,7 +1,6 @@
-package abd.p1.view.users.profile;
+package abd.p1.view.profile.editable;
 
 import abd.p1.controller.EditableProfileController;
-import abd.p1.controller.UsersController;
 
 import javax.swing.*;
 
@@ -43,7 +42,7 @@ public class EditableProfileWindow extends javax.swing.JDialog {
         undoButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
 
-        userProfilePanel1 = new abd.p1.view.users.profile.UserProfilePanel(controller, model);
+        userProfilePanel1 = new abd.p1.view.profile.UserProfilePanel(controller, model);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -154,6 +153,6 @@ public class EditableProfileWindow extends javax.swing.JDialog {
     private javax.swing.JButton passwordButton;
     private javax.swing.JButton saveButton;
     private javax.swing.JButton undoButton;
-    private abd.p1.view.users.profile.UserProfilePanel userProfilePanel1;
+    private abd.p1.view.profile.UserProfilePanel userProfilePanel1;
     // End of variables declaration//GEN-END:variables
 }

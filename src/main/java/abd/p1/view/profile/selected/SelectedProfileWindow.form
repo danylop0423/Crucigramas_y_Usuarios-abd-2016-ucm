@@ -62,7 +62,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Component class="abd.p1.view.users.profile.UserProfilePanel" name="userProfilePanel1">
+        <Component class="abd.p1.view.profile.UserProfilePanel" name="userProfilePanel1">
           <Properties>
             <Property name="doubleBuffered" type="boolean" value="false"/>
             <Property name="editable" type="boolean" value="true"/>
@@ -104,7 +104,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="abd.p1.view.users.profile.CompatibilityPanel" name="compatibilityPanel1">
+            <Component class="abd.p1.view.profile.CompatibilityPanel" name="compatibilityPanel1">
             </Component>
           </SubComponents>
         </Container>
