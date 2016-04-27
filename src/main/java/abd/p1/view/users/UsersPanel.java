@@ -6,7 +6,8 @@
 package abd.p1.view.users;
 
 import abd.p1.controller.EditableProfileController;
-import abd.p1.controller.ProfileController;
+import abd.p1.controller.AbstractProfileController;
+import abd.p1.controller.SelectedProfileController;
 import abd.p1.controller.UsersController;
 import abd.p1.model.Usuario;
 import abd.p1.view.profile.editable.EditableProfileWindow;
@@ -96,8 +97,9 @@ public class UsersPanel extends javax.swing.JPanel {
 
         if(selectedUser != null) {
             DefaultListModel<String> hobbiesModel = new DefaultListModel<>();
-            ProfileController profileController = new ProfileController(hobbiesModel, selectedUser);
-            SelectedProfileWindow profileW = new SelectedProfileWindow(profileController, hobbiesModel);
+            DefaultListModel<String> mutualHobbiesModel = new DefaultListModel<>();
+            AbstractProfileController profileController = new SelectedProfileController(hobbiesModel, mutualHobbiesModel, controller.getLoggedUser(), selectedUser);
+            SelectedProfileWindow profileW = new SelectedProfileWindow(profileController, hobbiesModel, mutualHobbiesModel);
             profileW.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this,

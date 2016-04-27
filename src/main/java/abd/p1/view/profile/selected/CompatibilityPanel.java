@@ -5,16 +5,29 @@
  */
 package abd.p1.view.profile.selected;
 
+import abd.p1.controller.AbstractProfileController;
+import abd.p1.controller.SelectedProfileController;
+
+import javax.swing.*;
+
 /**
  *
  * @author David Labrador <davidlab@ucm.es>
  */
 public class CompatibilityPanel extends javax.swing.JPanel {
 
+    private AbstractProfileController controller;
+    private DefaultListModel<String> mutualHobbiesModel;
+
     /**
      * Creates new form CompatibilityPanel
+     * @param controller
+     * @param mutualHobbiesModel
      */
-    public CompatibilityPanel() {
+    public CompatibilityPanel(AbstractProfileController controller, DefaultListModel<String> mutualHobbiesModel) {
+        this.controller = controller;
+        this.mutualHobbiesModel = mutualHobbiesModel;
+
         initComponents();
     }
 
@@ -32,6 +45,7 @@ public class CompatibilityPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jList1.setModel(mutualHobbiesModel);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel1.setText("Tu nivel de compatibilidad es de:");

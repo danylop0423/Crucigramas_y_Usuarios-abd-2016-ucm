@@ -1,6 +1,6 @@
 package abd.p1.view.profile;
 
-import abd.p1.controller.ProfileController;
+import abd.p1.controller.AbstractProfileController;
 import javax.swing.*;
 
 /**
@@ -9,7 +9,7 @@ import javax.swing.*;
  */
 public class UserProfilePanel extends javax.swing.JPanel {
 
-    private ProfileController controller;
+    private AbstractProfileController controller;
     private DefaultListModel<String> hobbiesModel;
     private boolean editable;
 
@@ -20,7 +20,7 @@ public class UserProfilePanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public UserProfilePanel(ProfileController controller, DefaultListModel model) {
+    public UserProfilePanel(AbstractProfileController controller, DefaultListModel model) {
         this.controller = controller;
         this.hobbiesModel = model;
 

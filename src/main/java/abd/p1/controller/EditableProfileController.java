@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author David Labrador <davidlab@ucm.es>
  */
-public class EditableProfileController extends ProfileController {
+public class EditableProfileController extends AbstractProfileController {
 
     public EditableProfileController(DefaultListModel<String> hobbiesModel, Usuario user) {
         super(hobbiesModel, user);

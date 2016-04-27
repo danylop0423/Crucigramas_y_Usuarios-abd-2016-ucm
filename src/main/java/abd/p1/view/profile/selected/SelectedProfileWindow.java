@@ -1,6 +1,6 @@
 package abd.p1.view.profile.selected;
 
-import abd.p1.controller.ProfileController;
+import abd.p1.controller.AbstractProfileController;
 import javax.swing.*;
 
 /**
@@ -8,8 +8,9 @@ import javax.swing.*;
  * @author David Labrador <davidlab@ucm.es>
  */
 public class SelectedProfileWindow extends javax.swing.JDialog {
-    private ProfileController controller;
+    private AbstractProfileController controller;
     private DefaultListModel<String> hobbiesModel;
+    private DefaultListModel<String> mutualHobbiesModel;
 
     /**
      * Creates new form EditableProfileWindow
@@ -19,12 +20,11 @@ public class SelectedProfileWindow extends javax.swing.JDialog {
         //initComponents();
     }
 
-    public SelectedProfileWindow(ProfileController controller, DefaultListModel<String> model) {
+    public SelectedProfileWindow(AbstractProfileController controller, DefaultListModel<String> hobbiesModel, DefaultListModel<String> mutualHobbiesModel) {
         this(null, true);
         this.controller = controller;
-        this.hobbiesModel = model;
-
-        controller.gatherUserHobbies();
+        this.hobbiesModel = hobbiesModel;
+        this.mutualHobbiesModel = mutualHobbiesModel;
 
         initComponents();
     }
@@ -40,11 +40,12 @@ public class SelectedProfileWindow extends javax.swing.JDialog {
 
         followButton = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        userProfilePanel1 = new abd.p1.view.profile.UserProfilePanel(controller, hobbiesModel);
         jPanel1 = new javax.swing.JPanel();
-        compatibilityPanel1 = new CompatibilityPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+
+        compatibilityPanel1 = new CompatibilityPanel(controller, mutualHobbiesModel);
+        userProfilePanel1 = new abd.p1.view.profile.UserProfilePanel(controller, hobbiesModel);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
