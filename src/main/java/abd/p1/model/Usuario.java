@@ -46,10 +46,10 @@ public class Usuario {
 	private String descripcion;
 	
 	@Column(name="latitud" , length=10, nullable= false )
-	private String latitud;
+	private Double latitud;
 	
 	@Column(name="longitud" , length=10, nullable= false )
-	private String longitud;
+	private Double longitud;
 	
 	
 	//private List<Mensaje> mensajes;
@@ -72,7 +72,7 @@ public class Usuario {
 	}
 	
 	public Usuario(String email, String password, String nombre, String genero, String genero_buscado,
-			Date fecha_nac, byte[] foto, String descripcion, String[] aficiones, String latitud, String longitud) {
+				   Date fecha_nac, byte[] foto, String descripcion, String[] aficiones, Double latitud, Double longitud) {
 		this.email = email;
 		this.password = password;
 		this.nombre = nombre;
@@ -154,19 +154,19 @@ public class Usuario {
 		this.descripcion = descripcion;
 	}
 
-	public String getLatitud() {
+	public Double getLatitud() {
 		return latitud;
 	}
 
-	public void setLatitud(String latitud) {
+	public void setLatitud(Double latitud) {
 		this.latitud = latitud;
 	}
 
-	public String getLongitud() {
+	public Double getLongitud() {
 		return longitud;
 	}
 
-	public void setLongitud(String longitud) {
+	public void setLongitud(Double longitud) {
 		this.longitud = longitud;
 	}
 

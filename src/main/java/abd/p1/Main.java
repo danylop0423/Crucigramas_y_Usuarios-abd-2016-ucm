@@ -55,8 +55,8 @@ public class Main {
                     null,
                     "Soy malote a más no poder.\nBusco gente similar para hacer maldades.",
                     new String[]{"Hechizos", "Artes oscuras", "Pócimas", "Brujería", "Cuidar gatitos"},
-                    "",
-                    ""
+                    40.6347737,
+                    -4.022891
             );
 
             DefaultListModel<Usuario> model = new DefaultListModel<>();

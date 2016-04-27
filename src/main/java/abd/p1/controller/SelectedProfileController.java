@@ -1,9 +1,9 @@
 package abd.p1.controller;
 
+import abd.p1.Tools;
 import abd.p1.model.Usuario;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,5 +30,20 @@ public class SelectedProfileController extends EditableProfileController {
                 mutualHobbiesModel.addElement(hobby);
             }
         }
+    }
+
+    public String calculateDistance() {
+        Double distance = Tools.calculateDistnaceBetweenPoints(
+                loggedUser.getLatitud(),
+                loggedUser.getLongitud(),
+                user.getLatitud(),
+                user.getLongitud()
+        );
+
+        Long rDistance = Math.round(distance);
+        String mDistance = String.valueOf(rDistance);
+        String kmDistance = String.valueOf(rDistance / 1000);
+
+        return rDistance > 1000 ? kmDistance + "km" : mDistance + "m";
     }
 }

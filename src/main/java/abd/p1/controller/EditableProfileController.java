@@ -85,4 +85,8 @@ public class EditableProfileController extends AbstractProfileController {
     public void updatePassword(String pass) {
         user.setPassword(pass);
     }
+
+    public String calculateDistance() {
+        return null;
+    }
 }

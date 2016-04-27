@@ -86,7 +86,7 @@ public class SelectedProfileWindow extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Chat", jPanel2);
 
-        jLabel1.setText("Distancia: 200m");
+        jLabel1.setText("Distancia: " + controller.calculateDistance());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

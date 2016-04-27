@@ -62,4 +62,6 @@ public abstract class AbstractProfileController {
     abstract public void updateHobby(String hobby);
 
     abstract public void updatePassword(String pass);
+
+    public abstract String calculateDistance();
 }

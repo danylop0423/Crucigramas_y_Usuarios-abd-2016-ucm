@@ -26,9 +26,9 @@ public class UsersController {
 
     public void gatherAllUsers() {
         // Debug code, must call dao
-        Usuario u1 = new Usuario("", "", "David", "", "", new Timestamp(647418600000L), null, "", new String[]{"Hechizos", "Pócimas", "Deportes extremos"}, "", "");
-        Usuario u2 = new Usuario("", "", "Clara", "", "", new Timestamp(716767200000L), null, "", new String[]{"Brujería", "Moda", "Leer"}, "", "");
-        Usuario u3 = new Usuario("", "", "Miguel", "", "", new Timestamp(697590000000L), null, "", new String[]{"Cocinar", "Botánica", "Pócimas", "Cuidar gatitos"}, "", "");
+        Usuario u1 = new Usuario("", "", "David", "", "", new Timestamp(647418600000L), null, "", new String[]{"Hechizos", "Pócimas", "Deportes extremos"}, 40.6366752, -4.0257766);
+        Usuario u2 = new Usuario("", "", "Clara", "", "", new Timestamp(716767200000L), null, "", new String[]{"Brujería", "Moda", "Leer"}, 40.4721338, -3.6905272);
+        Usuario u3 = new Usuario("", "", "Miguel", "", "", new Timestamp(697590000000L), null, "", new String[]{"Cocinar", "Botánica", "Pócimas", "Cuidar gatitos"}, 40.6344825, -4.0232617);
 
         usersModel.addElement(u1);
         usersModel.addElement(u2);
