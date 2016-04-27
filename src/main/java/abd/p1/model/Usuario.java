@@ -204,7 +204,7 @@ public class Usuario {
 	}
 */
 
-	public List<Respondidas> getMensajes() {
+	public List<Respondidas> getRespondidas() {
 		return respondidas;
 	}
 	
