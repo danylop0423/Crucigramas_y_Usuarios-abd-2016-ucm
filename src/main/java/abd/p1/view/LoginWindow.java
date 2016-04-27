@@ -5,18 +5,30 @@
  */
 package abd.p1.view;
 
+import abd.p1.controller.UsersController;
+import abd.p1.model.Usuario;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author David Labrador <davidlab@ucm.es>
  */
 public class LoginWindow extends javax.swing.JDialog {
 
+    private UsersController controller;
+    
     /**
      * Creates new form LoginDialog
      */
     public LoginWindow(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+ 
+        DefaultListModel<Usuario> listModel = new DefaultListModel<>();
+        Usuario u=new Usuario();
+        u.setEmail(emailField.getText());
+        u.setPassword(passField.getText());
+        controller = new UsersController(listModel ,u );
     }
 
     /**
@@ -57,6 +69,11 @@ public class LoginWindow extends javax.swing.JDialog {
         });
 
         agreeButton.setText("Aceptar");
+        agreeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agreeButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(agreeButton);
 
         newUserButton.setText("Nuevo usuario");
@@ -102,12 +119,24 @@ public class LoginWindow extends javax.swing.JDialog {
 
     private void passFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passFieldActionPerformed
         // TODO add your handling code here:
+        passField.setText("");
     }//GEN-LAST:event_passFieldActionPerformed
 
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
+        emailField.setText("");
     }//GEN-LAST:event_emailFieldActionPerformed
 
+    private void agreeButtonActionPerformed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agreeButtonActionPerformed
+        boolean flag= controller.compareUsers(emailField.getText(),passField.getText());
+        if(flag) System.out.println("Login correcto");
+        else System.out.println("Error Email o Contraseña no Validos");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agreeButtonActionPerformed
+
+   
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -136,6 +165,9 @@ public class LoginWindow extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
 
+        
+        
+        
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -23,6 +23,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 
 public class UserDAO {
+    
+    
     public boolean compareUser(String t1, String t2) {
 		// TODO Auto-generated method stub
 		//hace lo que sea necesario y además:

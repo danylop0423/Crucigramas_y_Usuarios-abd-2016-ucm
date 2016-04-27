@@ -1,5 +1,6 @@
 package abd.p1.controller;
 
+import abd.p1.bd.UserDAO;
 import abd.p1.model.Usuario;
 import java.sql.Timestamp;
 import javax.swing.DefaultListModel;
@@ -14,10 +15,12 @@ public class UsersController {
 
     private final DefaultListModel<Usuario> usersModel;
     private Usuario loggedUser;
-
+    private UserDAO dbUser;
+    
     public UsersController(DefaultListModel<Usuario> usersModel, Usuario loggedUser) {
         this.loggedUser = loggedUser;
         this.usersModel = usersModel;
+        dbUser=new UserDAO();
     }
 
     public Usuario getLoggedUser() {
@@ -33,5 +36,10 @@ public class UsersController {
         usersModel.addElement(u1);
         usersModel.addElement(u2);
         usersModel.addElement(u3);
+    }
+    
+    public boolean compareUsers(String user, String pass){
+        
+      return dbUser.compareUser(user,pass);
     }
 }
