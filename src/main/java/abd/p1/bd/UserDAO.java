@@ -11,9 +11,6 @@ package abd.p1.bd;
 
 */
 import abd.p1.model.Usuario;
-import java.util.ArrayList;
-import java.util.List;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -23,29 +20,28 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 
 public class UserDAO {
+    private SessionFactory factory;
     
+    public UserDAO(){
+        factory= buildSessionFactory();
+     }
     
-    public boolean compareUser(String t1, String t2) {
-		// TODO Auto-generated method stub
-		//hace lo que sea necesario y además:
+ public Usuario compareUser(String t1, String t2) {
+    // TODO Auto-generated method stub
+    //hace lo que sea necesario y además:		
+       Usuario u= new Usuario();
 		
-                           boolean flag =false;
-                           Usuario u= new Usuario();
-		
-		SessionFactory factory= buildSessionFactory();
-		Session s=factory.openSession();
-		
-		
-		Query query = s.createQuery("SELECT a.email, a.password " + "FROM Usuario AS a");
-		List<Object[]> resultados = query.list();
-		for(Object[] p : resultados) {
-		  u.setEmail((String) p[0]);
-		  u.setPassword((String) p[1]);
-		}
-		 s.close();
-		if ((t1.equals(u.getEmail())) && (t2.equals(u.getPassword()))) flag=true; 
-		return flag;
-	}
+        Session s=factory.openSession();
+        Transaction tr=s.beginTransaction();
+        Usuario resultado=(Usuario) s.get(Usuario.class,t1);
+        tr.commit();
+        s.close();
+                           
+        if (resultado != null){  
+              return resultado;
+             }else
+           return null;
+ }
 
 	
 	

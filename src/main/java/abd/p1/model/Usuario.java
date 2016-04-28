@@ -8,6 +8,7 @@ import java.util.*;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
@@ -60,7 +61,7 @@ public class Usuario {
 	private List<Usuario> amigos;
 	
 	
-	@ElementCollection
+	@ElementCollection (fetch=FetchType.EAGER)
 	private List<String> aficiones;
 
 	public Usuario(){
@@ -246,6 +247,10 @@ public class Usuario {
         Date now = new Date(System.currentTimeMillis());
 
         return Integer.parseInt(dateFormat.format((Date) now)) - Integer.parseInt(dateFormat.format((Date) fecha_nac));
+    }
+
+    public void setAficiones(List<String> afic) {
+       aficiones= afic;
     }
 
 

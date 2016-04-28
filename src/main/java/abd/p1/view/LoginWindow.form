@@ -74,6 +74,7 @@
         <Property name="text" type="java.lang.String" value="info@example.com"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="emailFieldMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailFieldActionPerformed"/>
       </Events>
     </Component>
@@ -87,6 +88,7 @@
         <Property name="text" type="java.lang.String" value="jPasswordField1"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="passFieldMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passFieldActionPerformed"/>
       </Events>
     </Component>

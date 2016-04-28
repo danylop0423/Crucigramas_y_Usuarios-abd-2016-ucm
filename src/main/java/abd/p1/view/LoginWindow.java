@@ -16,7 +16,7 @@ import javax.swing.DefaultListModel;
 public class LoginWindow extends javax.swing.JDialog {
 
     private UsersController controller;
-    
+    DefaultListModel<Usuario> Model;
     /**
      * Creates new form LoginDialog
      */
@@ -24,11 +24,11 @@ public class LoginWindow extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
  
-        DefaultListModel<Usuario> listModel = new DefaultListModel<>();
+        Model = new DefaultListModel<>();
         Usuario u=new Usuario();
         u.setEmail(emailField.getText());
         u.setPassword(passField.getText());
-        controller = new UsersController(listModel ,u );
+        controller = new UsersController(Model ,u );
     }
 
     /**
@@ -53,6 +53,11 @@ public class LoginWindow extends javax.swing.JDialog {
         jLabel1.setText("Dirección de correo:");
 
         emailField.setText("info@example.com");
+        emailField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                emailFieldMouseClicked(evt);
+            }
+        });
         emailField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailFieldActionPerformed(evt);
@@ -62,6 +67,11 @@ public class LoginWindow extends javax.swing.JDialog {
         jLabel2.setText("Contraseña:");
 
         passField.setText("jPasswordField1");
+        passField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passFieldMouseClicked(evt);
+            }
+        });
         passField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passFieldActionPerformed(evt);
@@ -119,20 +129,34 @@ public class LoginWindow extends javax.swing.JDialog {
 
     private void passFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passFieldActionPerformed
         // TODO add your handling code here:
-        passField.setText("");
+       
     }//GEN-LAST:event_passFieldActionPerformed
 
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
-        emailField.setText("");
+        
     }//GEN-LAST:event_emailFieldActionPerformed
 
     private void agreeButtonActionPerformed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agreeButtonActionPerformed
         boolean flag= controller.compareUsers(emailField.getText(),passField.getText());
-        if(flag) System.out.println("Login correcto");
+        if(flag) {
+          MainWindow mainW = new MainWindow(controller, Model);
+          mainW.setVisible(true);
+          this.setVisible(false);
+        }
         else System.out.println("Error Email o Contraseña no Validos");
         // TODO add your handling code here:
     }//GEN-LAST:event_agreeButtonActionPerformed
+
+    private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
+        // TODO add your handling code here:
+        emailField.setText("");
+    }//GEN-LAST:event_emailFieldMouseClicked
+
+    private void passFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passFieldMouseClicked
+        passField.setText("");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passFieldMouseClicked
 
    
     

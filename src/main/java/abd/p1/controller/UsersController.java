@@ -39,7 +39,12 @@ public class UsersController {
     }
     
     public boolean compareUsers(String user, String pass){
-        
-      return dbUser.compareUser(user,pass);
+      Usuario u=dbUser.compareUser(user,pass);  
+       if(u != null){
+           this.loggedUser=u; 
+           return true;
+       }
+       else 
+           return false;
     }
 }

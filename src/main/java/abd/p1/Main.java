@@ -2,6 +2,7 @@ package abd.p1;
 
 import abd.p1.controller.UsersController;
 import abd.p1.model.Usuario;
+import abd.p1.view.LoginWindow;
 import abd.p1.view.MainWindow;
 
 import java.sql.Timestamp;
@@ -44,7 +45,7 @@ public class Main {
             // Si son validos, mostrar ventana principal.
             //LoginWindow loginW = new LoginWindow(new JFrame(), false);
             //loginW.setVisible(true);
-
+            /*
             Usuario logedUser = new Usuario(
                     "",
                     "",
@@ -58,12 +59,14 @@ public class Main {
                     40.6347737,
                     -4.022891
             );
+            */
+            //DefaultListModel<Usuario> model = new DefaultListModel<>();
+            //UsersController controller = new UsersController(model, logedUser);
 
-            DefaultListModel<Usuario> model = new DefaultListModel<>();
-            UsersController controller = new UsersController(model, logedUser);
-
-            MainWindow mainW = new MainWindow(controller, model);
-            mainW.setVisible(true);
+            LoginWindow login=new LoginWindow(null, false);
+            login.setVisible(true);
+            //MainWindow mainW = new MainWindow(controller, model);
+            //mainW.setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();
