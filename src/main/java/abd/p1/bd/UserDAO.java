@@ -21,31 +21,31 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class UserDAO {
     private SessionFactory factory;
-    
+
     public UserDAO(){
         factory= buildSessionFactory();
      }
-    
- public Usuario compareUser(String t1, String t2) {
+
+ public Usuario findUserById(String t1) {
     // TODO Auto-generated method stub
-    //hace lo que sea necesario y además:		
+    //hace lo que sea necesario y además:
        Usuario u= new Usuario();
-		
+
         Session s=factory.openSession();
         Transaction tr=s.beginTransaction();
         Usuario resultado=(Usuario) s.get(Usuario.class,t1);
         tr.commit();
         s.close();
-                           
-        if (resultado != null){  
+
+        if (resultado != null){
               return resultado;
              }else
            return null;
  }
 
-	
-	
-//-----------------------------------------------	
+
+
+//-----------------------------------------------
 	private static SessionFactory buildSessionFactory() {
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 		try {
@@ -56,6 +56,6 @@ public class UserDAO {
 			return null;
 		}
 	}
-//**************************************************	
+//**************************************************
 
 }
