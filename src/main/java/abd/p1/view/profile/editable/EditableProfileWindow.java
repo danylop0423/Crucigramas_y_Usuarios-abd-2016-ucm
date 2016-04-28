@@ -63,6 +63,11 @@ public class EditableProfileWindow extends javax.swing.JDialog {
         });
 
         saveButton.setText("Guardar cambios");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,6 +110,10 @@ public class EditableProfileWindow extends javax.swing.JDialog {
     private void undoButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.setVisible(false);
         this.dispose();
+    }
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        controller.saveChanges();
     }
 
     /**

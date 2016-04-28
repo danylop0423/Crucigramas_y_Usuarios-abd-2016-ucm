@@ -8,7 +8,6 @@ package abd.p1.bd;
 /**
  *
  * @author dany
-
 */
 import abd.p1.model.Usuario;
 import org.hibernate.Session;
@@ -17,35 +16,49 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import java.util.List;
 
 
 public class UserDAO {
     private SessionFactory factory;
-    
+
     public UserDAO(){
         factory= buildSessionFactory();
      }
-    
- public Usuario compareUser(String t1, String t2) {
-    // TODO Auto-generated method stub
-    //hace lo que sea necesario y además:		
-       Usuario u= new Usuario();
-		
-        Session s=factory.openSession();
-        Transaction tr=s.beginTransaction();
-        Usuario resultado=(Usuario) s.get(Usuario.class,t1);
+
+     public Usuario findById(String email) {
+        Usuario u = new Usuario();
+
+        Session s = factory.openSession();
+        Transaction tr = s.beginTransaction();
+        Usuario resultado = (Usuario) s.get(Usuario.class, email);
         tr.commit();
         s.close();
-                           
-        if (resultado != null){  
-              return resultado;
-             }else
-           return null;
- }
 
-	
-	
-//-----------------------------------------------	
+        return resultado;
+    }
+
+    public List<Usuario> findAll() {
+        Session s = factory.openSession();
+        Transaction tr = s.beginTransaction();
+        List<Usuario> userList = s.createQuery("from " + Usuario.class.getName()).list();
+        tr.commit();
+        s.close();
+
+        return userList;
+    }
+
+    public void saveOrUpdate(Usuario user) {
+        Session s = factory.openSession();
+        Transaction tr = s.beginTransaction();
+        s.saveOrUpdate(user);
+        tr.commit();
+        s.close();
+    }
+
+
+
+//-----------------------------------------------
 	private static SessionFactory buildSessionFactory() {
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 		try {
@@ -56,6 +69,6 @@ public class UserDAO {
 			return null;
 		}
 	}
-//**************************************************	
+//**************************************************
 
 }

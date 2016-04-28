@@ -1,5 +1,6 @@
 package abd.p1.controller;
 
+import abd.p1.bd.UserDAO;
 import abd.p1.model.Usuario;
 
 import javax.swing.*;
@@ -12,10 +13,12 @@ public abstract class AbstractProfileController {
 
     protected DefaultListModel<String> hobbiesModel;
     protected Usuario user;
+    protected UserDAO db;
 
     public AbstractProfileController(DefaultListModel<String> hobbiesModel, Usuario user) {
         this.user = user;
         this.hobbiesModel = hobbiesModel;
+        this.db = new UserDAO();
         this.buildLoggedUserHobbiesModel();
     }
 

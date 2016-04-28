@@ -82,6 +82,11 @@ public class EditableProfileController extends AbstractProfileController {
         }
     }
 
+    public void saveChanges() {
+        db.saveOrUpdate(user);
+        // TODO: Show confirmation message
+    }
+
     public void updatePassword(String pass) {
         user.setPassword(pass);
     }

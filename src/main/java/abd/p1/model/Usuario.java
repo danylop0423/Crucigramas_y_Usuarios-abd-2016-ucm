@@ -23,44 +23,44 @@ public class Usuario {
 	@Id
 	@Column(name="email", length=50)
 	private String email;
-	
+
 	@Column(name="password" , length=10, nullable= false )
 	private String password;
-	
+
 	@Column(name="nombre" , length=50, nullable= false )
 	private String nombre;
-	
+
 	@Column(name="genero" , length=20, nullable= false )
 	private String genero;
-	
+
 	@Column(name="genero_buscado" , length=20, nullable= false )
 	private String genero_buscado;
-	
+
 	@Column(name="fecha_nacimiento" , nullable=true )
 	@Temporal(TemporalType.DATE)
-	private Date fecha_nac; 
+	private Date fecha_nac;
 
 	@Lob
 	private byte[ ] foto;
-	
+
 	@Column(name="descripcion" , length=146, nullable= false )
 	private String descripcion;
-	
+
 	@Column(name="latitud" , nullable= true )
 	private Double latitud;
-	
+
 	@Column(name="longitud" , nullable= true )
 	private Double longitud;
-	
-	
+
+
 	//private List<Mensaje> mensajes;
 	@OneToMany(mappedBy="usuario")
 	private List<Respondidas> respondidas;
 
 	@ManyToMany
 	private List<Usuario> amigos;
-	
-	
+
+
 	@ElementCollection (fetch=FetchType.EAGER)
 	private List<String> aficiones;
 
@@ -68,10 +68,10 @@ public class Usuario {
 		//mensajes=new ArrayList<>();
 		respondidas=new ArrayList<>();
 		amigos= new ArrayList<>();
-		aficiones=	new ArrayList<>();	
+		aficiones=	new ArrayList<>();
 
 	}
-	
+
 	public Usuario(String email, String password, String nombre, String genero, String genero_buscado,
 				   Date fecha_nac, byte[] foto, String descripcion, String[] aficiones, Double latitud, Double longitud) {
 		this.email = email;
@@ -88,7 +88,10 @@ public class Usuario {
 		this.respondidas=new ArrayList<>();
 		this.amigos =new ArrayList<>();
 		this.aficiones = new ArrayList<>();
-		Collections.addAll(this.aficiones, aficiones);
+
+		if (aficiones != null) {
+			Collections.addAll(this.aficiones, aficiones);
+		}
 	}
 
 	public String getEmail() {
@@ -174,15 +177,15 @@ public class Usuario {
 	public List<Usuario> getAmigos() {
 		return amigos;
 	}
-	
+
 	public void addAmigo(Usuario u) {
 		amigos.add(u);
 	}
-	
+
 	public void removeAmigo(Usuario u) {
 		amigos.remove(u);
 	}
-	
+
 	public int getNumAmigo() {
 		return amigos.size();
 	}
@@ -191,15 +194,15 @@ public class Usuario {
 	public List<Mensaje> getMensajes() {
 		return mensajes;
 	}
-	
+
 	public void addMensaje(Mensaje m) {
 		mensajes.add(m);
 	}
-	
+
 	public void removeMensaje(Mensaje m) {
 		mensajes.remove(m);
 	}
-	
+
 	public int getNumMensajes() {
 		return mensajes.size();
 	}
@@ -208,28 +211,28 @@ public class Usuario {
 	public List<Respondidas> getRespondidas() {
 		return respondidas;
 	}
-	
+
 	public void addRespondida(Respondidas m) {
 		respondidas.add(m);
 	}
-	
+
 	public void removeRespondidas(Respondidas m) {
 		respondidas.remove(m);
 	}
-	
+
 	public int getNumRespondidas() {
 		return respondidas.size();
 	}
 
-//--------------------------------------	
+//--------------------------------------
 	public List<String> getAficiones() {
 		return aficiones;
 	}
-	
+
 	public void addAficion(String a) {
 		aficiones.add(a);
 	}
-	
+
 	public void removeAficion(String a) {
 		aficiones.remove(a);
 	}
@@ -237,7 +240,7 @@ public class Usuario {
 	public void updateAficion(String a, String value) {
 		aficiones.set(aficiones.indexOf(a), value);
 	}
-	
+
 	public int getNumAficiones() {
 		return aficiones.size();
 	}
@@ -246,7 +249,7 @@ public class Usuario {
         SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY");
         Date now = new Date(System.currentTimeMillis());
 
-        return Integer.parseInt(dateFormat.format((Date) now)) - Integer.parseInt(dateFormat.format((Date) fecha_nac));
+        return fecha_nac != null ? Integer.parseInt(dateFormat.format((Date) now)) - Integer.parseInt(dateFormat.format((Date) fecha_nac)) : 0;
     }
 
     public void setAficiones(List<String> afic) {

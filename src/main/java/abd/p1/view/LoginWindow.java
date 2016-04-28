@@ -5,11 +5,14 @@
  */
 package abd.p1.view;
 
+import abd.p1.controller.EditableProfileController;
 import abd.p1.controller.LogInController;
 import abd.p1.controller.UsersController;
 import abd.p1.model.Usuario;
+import abd.p1.view.profile.editable.EditableProfileWindow;
 
 import javax.swing.*;
+import java.sql.Timestamp;
 
 /**
  *
@@ -24,7 +27,6 @@ public class LoginWindow extends javax.swing.JDialog {
      */
     public LoginWindow(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
     }
 
     public LoginWindow(LogInController controller) {
@@ -50,7 +52,7 @@ public class LoginWindow extends javax.swing.JDialog {
         agreeButton = new javax.swing.JButton();
         newUserButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Dirección de correo:");
 
@@ -68,7 +70,7 @@ public class LoginWindow extends javax.swing.JDialog {
 
         jLabel2.setText("Contraseña:");
 
-        passField.setText("jPasswordField1");
+        passField.setText("password");
         passField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passFieldMouseClicked(evt);
@@ -89,6 +91,11 @@ public class LoginWindow extends javax.swing.JDialog {
         jPanel1.add(agreeButton);
 
         newUserButton.setText("Nuevo usuario");
+        newUserButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newUserButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(newUserButton);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,6 +172,26 @@ public class LoginWindow extends javax.swing.JDialog {
             // TODO: Show warning: Empty email field
         }
     }//GEN-LAST:event_agreeButtonActionPerformed
+
+    private void newUserButtonActionPerformed(java.awt.event.MouseEvent evt) {
+        String email = emailField.getText();
+        String pass = passField.getText();
+
+        if (email != null && !email.trim().isEmpty()) {
+            if (pass != null && !pass.trim().isEmpty()) {
+                Usuario newUser = new Usuario(email, pass, "", "", "", null, null, "", null, 0.0, 0.0);
+
+                DefaultListModel<String> model = new DefaultListModel<>();
+                EditableProfileController controller = new EditableProfileController(model, newUser);
+                EditableProfileWindow editableProfileW = new EditableProfileWindow(controller, model);
+                editableProfileW.setVisible(true);
+            } else {
+                // TODO: Show warning: Empty pass field
+            }
+        } else {
+            // TODO: Show warning: Empty email field
+        }
+    };
 
     private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
         // TODO add your handling code here:

@@ -16,6 +16,6 @@ public class LogInController {
     }
 
     public Usuario logIn(String user, String pass){
-        return dbUser.compareUser(user,pass);
+        return dbUser.findById(user);
     }
 }
