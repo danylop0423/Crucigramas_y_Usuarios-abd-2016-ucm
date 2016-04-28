@@ -20,7 +20,7 @@ public class UsersController {
     public UsersController(DefaultListModel<Usuario> usersModel, Usuario loggedUser) {
         this.loggedUser = loggedUser;
         this.usersModel = usersModel;
-        dbUser=new UserDAO();
+        this.dbUser = new UserDAO();
     }
 
     public Usuario getLoggedUser() {
@@ -36,15 +36,5 @@ public class UsersController {
         usersModel.addElement(u1);
         usersModel.addElement(u2);
         usersModel.addElement(u3);
-    }
-    
-    public boolean compareUsers(String user, String pass){
-      Usuario u=dbUser.compareUser(user,pass);  
-       if(u != null){
-           this.loggedUser=u; 
-           return true;
-       }
-       else 
-           return false;
     }
 }

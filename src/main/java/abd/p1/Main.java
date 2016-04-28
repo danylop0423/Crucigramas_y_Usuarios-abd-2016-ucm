@@ -1,5 +1,6 @@
 package abd.p1;
 
+import abd.p1.controller.LogInController;
 import abd.p1.controller.UsersController;
 import abd.p1.model.Usuario;
 import abd.p1.view.LoginWindow;
@@ -41,32 +42,9 @@ public class Main {
         try {
             // sf = buildSessionFactory();
 
-            // Mostrar ventana de login y comprobar validez del usuario y contraseña.
-            // Si son validos, mostrar ventana principal.
-            //LoginWindow loginW = new LoginWindow(new JFrame(), false);
-            //loginW.setVisible(true);
-            /*
-            Usuario logedUser = new Usuario(
-                    "",
-                    "",
-                    "Labrador",
-                    "Masculino",
-                    "Mujeres",
-                    new Timestamp(647418600000L),
-                    null,
-                    "Soy malote a más no poder.\nBusco gente similar para hacer maldades.",
-                    new String[]{"Hechizos", "Artes oscuras", "Pócimas", "Brujería", "Cuidar gatitos"},
-                    40.6347737,
-                    -4.022891
-            );
-            */
-            //DefaultListModel<Usuario> model = new DefaultListModel<>();
-            //UsersController controller = new UsersController(model, logedUser);
-
-            LoginWindow login=new LoginWindow(null, false);
-            login.setVisible(true);
-            //MainWindow mainW = new MainWindow(controller, model);
-            //mainW.setVisible(true);
+            LogInController controller = new LogInController();
+            LoginWindow loginW = new LoginWindow(controller);
+            loginW.setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,5 +52,4 @@ public class Main {
             if (sf != null) sf.close();
         }
     }
-
 }

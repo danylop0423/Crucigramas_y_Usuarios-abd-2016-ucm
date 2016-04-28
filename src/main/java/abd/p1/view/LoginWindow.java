@@ -5,9 +5,11 @@
  */
 package abd.p1.view;
 
+import abd.p1.controller.LogInController;
 import abd.p1.controller.UsersController;
 import abd.p1.model.Usuario;
-import javax.swing.DefaultListModel;
+
+import javax.swing.*;
 
 /**
  *
@@ -15,20 +17,20 @@ import javax.swing.DefaultListModel;
  */
 public class LoginWindow extends javax.swing.JDialog {
 
-    private UsersController controller;
-    DefaultListModel<Usuario> Model;
+    private LogInController controller;
+
     /**
      * Creates new form LoginDialog
      */
     public LoginWindow(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
- 
-        Model = new DefaultListModel<>();
-        Usuario u=new Usuario();
-        u.setEmail(emailField.getText());
-        u.setPassword(passField.getText());
-        controller = new UsersController(Model ,u );
+    }
+
+    public LoginWindow(LogInController controller) {
+        this(null, false);
+        this.controller = controller;
+        initComponents();
     }
 
     /**
@@ -129,23 +131,39 @@ public class LoginWindow extends javax.swing.JDialog {
 
     private void passFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passFieldActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_passFieldActionPerformed
 
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_emailFieldActionPerformed
 
     private void agreeButtonActionPerformed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agreeButtonActionPerformed
-        boolean flag= controller.compareUsers(emailField.getText(),passField.getText());
-        if(flag) {
-          MainWindow mainW = new MainWindow(controller, Model);
-          mainW.setVisible(true);
-          this.setVisible(false);
+        String email = emailField.getText();
+        String pass = passField.getText();
+
+        if (email != null && !email.trim().isEmpty()) {
+            if (pass != null && !pass.trim().isEmpty()) {
+                Usuario loggedUser = controller.logIn(email, pass);
+
+                if (loggedUser != null) {
+                    DefaultListModel<Usuario> model = new DefaultListModel<>();
+                    UsersController controller = new UsersController(model, loggedUser);
+
+                    MainWindow mainW = new MainWindow(controller, model);
+                    mainW.setVisible(true);
+                    this.setVisible(false);
+                    this.dispose();
+                } else {
+                    // TODO: Show warning: Wrong email or pass value
+                }
+            } else {
+                // TODO: Show warning: Empty pass field
+            }
+        } else {
+            // TODO: Show warning: Empty email field
         }
-        else System.out.println("Error Email o Contraseña no Validos");
-        // TODO add your handling code here:
     }//GEN-LAST:event_agreeButtonActionPerformed
 
     private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
@@ -158,9 +176,9 @@ public class LoginWindow extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_passFieldMouseClicked
 
-   
-    
-    
+
+
+
     /**
      * @param args the command line arguments
      */
@@ -189,9 +207,9 @@ public class LoginWindow extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
 
-        
-        
-        
+
+
+
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
