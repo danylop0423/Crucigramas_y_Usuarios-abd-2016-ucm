@@ -93,11 +93,19 @@ public class SearchPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
+        String name = jTextField1.getText();
+
+        if (name != null && !name.trim().isEmpty()) {
+            controller.filterByName(name);
+        }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+        String name = jTextField1.getText();
+
+        if (name != null && !name.trim().isEmpty() && jCheckBox1.isSelected()) {
+            controller.filterByName(name);
+        }
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     public Usuario getSelectedListItem() {

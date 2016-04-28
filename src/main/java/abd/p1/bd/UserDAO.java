@@ -16,6 +16,8 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import java.awt.*;
 import java.util.List;
 
 
@@ -36,6 +38,21 @@ public class UserDAO {
         s.close();
 
         return resultado;
+    }
+
+    public List<Usuario> findByName(String name) {
+        Session s = factory.openSession();
+        Transaction tr = s.beginTransaction();
+
+        List<Usuario> userList =
+                s.createQuery("from " + Usuario.class.getName() + " as user where user.nombre like :name")
+                    .setString("name", '%' + name + '%')
+                    .list();
+
+        tr.commit();
+        s.close();
+
+        return userList;
     }
 
     public List<Usuario> findAll() {
