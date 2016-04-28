@@ -46,10 +46,10 @@ public class Usuario {
 	@Column(name="descripcion" , length=146, nullable= false )
 	private String descripcion;
 	
-	@Column(name="latitud" , length=10, nullable= false )
+	@Column(name="latitud" , nullable= true )
 	private Double latitud;
 	
-	@Column(name="longitud" , length=10, nullable= false )
+	@Column(name="longitud" , nullable= true )
 	private Double longitud;
 	
 	
