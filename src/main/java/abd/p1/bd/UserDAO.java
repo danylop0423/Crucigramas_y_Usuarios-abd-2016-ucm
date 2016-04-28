@@ -26,7 +26,7 @@ public class UserDAO {
         factory= buildSessionFactory();
      }
 
-     public Usuario findById(String email) {
+    public Usuario findById(String email) {
         Usuario u = new Usuario();
 
         Session s = factory.openSession();
@@ -55,8 +55,6 @@ public class UserDAO {
         tr.commit();
         s.close();
     }
-
-
 
 //-----------------------------------------------
 	private static SessionFactory buildSessionFactory() {

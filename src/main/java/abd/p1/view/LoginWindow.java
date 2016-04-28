@@ -148,7 +148,8 @@ public class LoginWindow extends javax.swing.JDialog {
 
     private void agreeButtonActionPerformed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agreeButtonActionPerformed
         String email = emailField.getText();
-        String pass = passField.getText();
+        char[] encodedPass = passField.getPassword();
+        String pass = new String(encodedPass);
 
         if (email != null && !email.trim().isEmpty()) {
             if (pass != null && !pass.trim().isEmpty()) {
@@ -162,14 +163,14 @@ public class LoginWindow extends javax.swing.JDialog {
                     mainW.setVisible(true);
                     this.setVisible(false);
                     this.dispose();
-                } else {
-                    // TODO: Show warning: Wrong email or pass value
                 }
             } else {
                 // TODO: Show warning: Empty pass field
+                System.out.println("Empty pass field");
             }
         } else {
             // TODO: Show warning: Empty email field
+            System.out.println("Empty email field");
         }
     }//GEN-LAST:event_agreeButtonActionPerformed
 
@@ -195,11 +196,11 @@ public class LoginWindow extends javax.swing.JDialog {
 
     private void emailFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFieldMouseClicked
         // TODO add your handling code here:
-        emailField.setText("");
+        //emailField.setText("");
     }//GEN-LAST:event_emailFieldMouseClicked
 
     private void passFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passFieldMouseClicked
-        passField.setText("");
+        //passField.setText("");
         // TODO add your handling code here:
     }//GEN-LAST:event_passFieldMouseClicked
 
