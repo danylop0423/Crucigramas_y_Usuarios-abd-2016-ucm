@@ -114,6 +114,12 @@ public class EditableProfileWindow extends javax.swing.JDialog {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {
         controller.saveChanges();
+        JOptionPane.showMessageDialog(this,
+                "Cambios guardados correctamente",
+                "",
+                JOptionPane.INFORMATION_MESSAGE);
+        this.setVisible(false);
+        this.dispose();
     }
 
     /**
