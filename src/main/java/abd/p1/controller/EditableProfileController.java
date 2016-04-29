@@ -1,6 +1,8 @@
 package abd.p1.controller;
 
 import abd.p1.model.Usuario;
+import com.toedter.calendar.JDateChooser;
+
 import java.sql.Timestamp;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -26,9 +28,12 @@ public class EditableProfileController extends AbstractProfileController {
     }
 
     public String updateBirthDate() {
-        String date = JOptionPane.showInputDialog("Introduce nueva fecha de nacimiento:");
-        if (date != null && !date.trim().isEmpty()) {
-            user.setFecha_nac(new Timestamp(Long.parseLong(date)));
+        JDateChooser dateChooser = new JDateChooser();
+        Object[] params = {"Introduce nueva fecha de nacimiento:\n", dateChooser};
+        int configOption = JOptionPane.showConfirmDialog(null, params, "", JOptionPane.OK_CANCEL_OPTION);
+
+        if (configOption == JOptionPane.YES_OPTION) {
+            user.setFecha_nac(dateChooser.getDate());
         }
 
         return String.valueOf(user.calculateAge());
