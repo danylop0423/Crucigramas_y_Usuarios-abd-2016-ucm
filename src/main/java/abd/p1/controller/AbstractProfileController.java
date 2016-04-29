@@ -67,4 +67,8 @@ public abstract class AbstractProfileController {
     abstract public void updatePassword(String pass);
 
     public abstract String calculateDistance();
+
+    public abstract ImageIcon getAvatar();
+
+    public abstract void changeAvatar();
 }

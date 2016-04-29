@@ -5,6 +5,8 @@
  */
 package abd.p1.view.users;
 
+import javax.swing.*;
+
 /**
  *
  * @author David Labrador <davidlab@ucm.es>
@@ -36,6 +38,10 @@ public class UserRowPanel extends javax.swing.JPanel {
     public void setAge(int age) {
         this.age = age;
         ageLabel.setText(age + " años");
+    }
+
+    public void setIcon(ImageIcon avatar) {
+        avatarPanel1.setIcon(avatar);
     }
 
     /**

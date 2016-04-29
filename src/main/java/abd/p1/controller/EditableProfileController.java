@@ -1,10 +1,15 @@
 package abd.p1.controller;
 
 import abd.p1.model.Usuario;
+import org.apache.commons.io.IOUtils;
+import sun.nio.ch.IOUtil;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -79,6 +84,26 @@ public class EditableProfileController extends AbstractProfileController {
         if (newHobbyValue != null && !newHobbyValue.trim().isEmpty()) {
             user.updateAficion(hobby, newHobbyValue);
             hobbiesModel.set(hobbiesModel.indexOf(hobby), newHobbyValue);
+        }
+    }
+
+    public ImageIcon getAvatar() {
+        byte[] userAvatar = user.getFoto();
+
+        return userAvatar != null ? new ImageIcon(userAvatar) : null;
+    }
+
+    public void changeAvatar() {
+        final JFileChooser fc = new JFileChooser();
+        int returnVal = fc.showOpenDialog(null);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            try {
+                user.setFoto(Files.readAllBytes(Paths.get(file.getPath())));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

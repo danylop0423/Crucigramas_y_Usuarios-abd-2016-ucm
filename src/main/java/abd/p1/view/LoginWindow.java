@@ -12,6 +12,9 @@ import abd.p1.model.Usuario;
 import abd.p1.view.profile.editable.EditableProfileWindow;
 
 import javax.swing.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 
 /**
@@ -180,7 +183,15 @@ public class LoginWindow extends javax.swing.JDialog {
 
         if (email != null && !email.trim().isEmpty()) {
             if (pass != null && !pass.trim().isEmpty()) {
-                Usuario newUser = new Usuario(email, pass, "", "", "", null, null, "", null, 0.0, 0.0);
+                byte[] defaultAvatar = null;
+
+                try {
+                    defaultAvatar = Files.readAllBytes(Paths.get("./src/main/resources/defaultAvatar.jpg"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Usuario newUser = new Usuario(email, pass, "", "", "", null, defaultAvatar, "", null, 0.0, 0.0);
 
                 DefaultListModel<String> model = new DefaultListModel<>();
                 EditableProfileController controller = new EditableProfileController(model, newUser);

@@ -8,8 +8,7 @@ package abd.p1.view.users;
 import abd.p1.model.Usuario;
 import java.awt.Color;
 import java.awt.Component;
-import javax.swing.JList;
-import javax.swing.ListCellRenderer;
+import javax.swing.*;
 
 /**
  *
@@ -21,10 +20,11 @@ public class UserCellRenderer extends UserRowPanel implements ListCellRenderer<U
     public Component getListCellRendererComponent(JList<? extends Usuario> list, Usuario value, int index, boolean isSelected, boolean cellHasFocus) {
         this.setName(value.getNombre());
         this.setAge(value.calculateAge());
+        this.setIcon(new ImageIcon(value.getFoto()));
         this.setOpaque(true);
 
         if (isSelected) {
-            this.setBackground(Color.DARK_GRAY);
+            this.setBackground(Color.LIGHT_GRAY);
         } else {
             this.setBackground(Color.WHITE);
         }

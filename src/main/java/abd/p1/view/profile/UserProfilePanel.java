@@ -61,7 +61,7 @@ public class UserProfilePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        avatarPanel1 = new abd.p1.view.users.AvatarPanel();
+        avatarPanel1 = new abd.p1.view.users.AvatarPanel(controller.getAvatar());
         nameLabel = new javax.swing.JLabel();
         ageLabel = new javax.swing.JLabel();
         nameButton = new javax.swing.JButton();
@@ -249,7 +249,7 @@ public class UserProfilePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_nameButtonActionPerformed
 
     private void avatarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avatarButtonActionPerformed
-        // TODO add your handling code here:
+        controller.changeAvatar();
     }//GEN-LAST:event_avatarButtonActionPerformed
 
     private void birthDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_birthDateButtonActionPerformed
