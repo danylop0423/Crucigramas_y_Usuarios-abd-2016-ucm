@@ -12,8 +12,9 @@ public class Tools {
         Double latDistance = Math.toRadians(lat2 - lat1);
         Double lonDistance = Math.toRadians(lng2 - lng1);
 
-        Double a = Math.pow(Math.sin(latDistance / 2), 2) + Math.cos(Math.toRadians(lat2))
-                * Math.cos(Math.toRadians(lat1)) * Math.pow(Math.sin(lonDistance / 2), 2);
+        Double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
 
         Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 

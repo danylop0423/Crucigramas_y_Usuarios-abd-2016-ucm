@@ -36,10 +36,26 @@ public class UsersController {
         }
     }
 
+    public void gatherNearestUsers() {
+        usersModel.removeAllElements();
+
+        for (Usuario user : dbUser.findNearest(loggedUser.getLatitud(), loggedUser.getLongitud())) {
+            usersModel.addElement(user);
+        }
+    }
+
     public void filterByName(String name) {
         usersModel.removeAllElements();
 
         for(Usuario user : dbUser.findByName(name)) {
+            usersModel.addElement(user);
+        }
+    }
+
+    public void filterNearestUsersByName(String name) {
+        usersModel.removeAllElements();
+
+        for (Usuario user : dbUser.findNearestByName(name, loggedUser.getLatitud(), loggedUser.getLongitud())) {
             usersModel.addElement(user);
         }
     }

@@ -65,6 +65,42 @@ public class UserDAO {
         return userList;
     }
 
+    public List<Usuario> findNearest(Double lat, Double lng) {
+        Session s = factory.openSession();
+        Transaction tr = s.beginTransaction();
+        List<Usuario> userList =
+                s.createQuery(
+                        "from " + Usuario.class.getName() + " as user" +
+                        " order by (user.latitud - :lat) * (user.latitud - :lat) + (user.longitud - :lng) * (user.longitud - :lng)"
+                ).setDouble("lat", lat)
+                .setDouble("lng", lng)
+                .setMaxResults(20)
+                .list();
+        tr.commit();
+        s.close();
+
+        return userList;
+    }
+
+    public List<Usuario> findNearestByName(String name, Double lat, Double lng) {
+        Session s = factory.openSession();
+        Transaction tr = s.beginTransaction();
+        List<Usuario> userList =
+                s.createQuery(
+                        "from " + Usuario.class.getName() + " as user" +
+                        " where user.nombre like :name" +
+                        " order by (user.latitud - :lat) * (user.latitud - :lat) + (user.longitud - :lng) * (user.longitud - :lng)"
+                ).setString("name", "%" + name + "%")
+                .setDouble("lat", lat)
+                .setDouble("lng", lng)
+                .setMaxResults(20)
+                .list();
+        tr.commit();
+        s.close();
+
+        return userList;
+    }
+
     public void saveOrUpdate(Usuario user) {
         Session s = factory.openSession();
         Transaction tr = s.beginTransaction();
