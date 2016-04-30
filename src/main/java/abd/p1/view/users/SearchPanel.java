@@ -25,7 +25,9 @@ public class SearchPanel extends javax.swing.JPanel {
         this.controller = controller;
         userList.setModel(modelo);
         userList.setCellRenderer(new UserCellRenderer());
-        controller.gatherAllUsers();
+        jTextField1.setEditable(false);
+        jTextField1.setOpaque(true);
+        controller.gatherNearestUsers();
     }
 
     /**
@@ -93,10 +95,14 @@ public class SearchPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        String name = jTextField1.getText();
+        boolean isSelected = jCheckBox1.isSelected();
 
-        if (name != null && !name.trim().isEmpty()) {
-            controller.filterByName(name);
+        jTextField1.setEditable(isSelected);
+        jTextField1.setOpaque(!isSelected);
+
+        if (!isSelected) {
+            jTextField1.setText("");
+            controller.gatherNearestUsers();
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
@@ -104,7 +110,7 @@ public class SearchPanel extends javax.swing.JPanel {
         String name = jTextField1.getText();
 
         if (name != null && !name.trim().isEmpty() && jCheckBox1.isSelected()) {
-            controller.filterByName(name);
+            controller.filterNearestUsersByName(name);
         }
     }//GEN-LAST:event_jTextField1ActionPerformed
 
