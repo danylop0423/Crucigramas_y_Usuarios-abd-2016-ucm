@@ -5,12 +5,15 @@
  */
 package abd.p1.view;
 
+import abd.p1.bd.HibernateUtils;
 import abd.p1.controller.QuestionsController;
 import abd.p1.controller.UsersController;
 import abd.p1.model.Pregunta;
 import abd.p1.model.Usuario;
 
-import javax.swing.DefaultListModel;
+import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -55,7 +58,13 @@ public class MainWindow extends javax.swing.JFrame {
         questionsPanel1 = new abd.p1.view.questions.QuestionsPanel(questionsModel, questionsController);
         jPanel3 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                windowClosingProcedure();
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,6 +133,15 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void windowClosingProcedure() {
+        HibernateUtils.getSessionFactory().close();
+        this.setVisible(false);
+        this.dispose();
+        System.out.println("Bye!!!");
+        System.exit(0);
+
+    }
 
     /**
      * @param args the command line arguments

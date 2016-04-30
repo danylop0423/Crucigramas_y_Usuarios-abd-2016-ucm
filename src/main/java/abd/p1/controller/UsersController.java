@@ -2,11 +2,8 @@ package abd.p1.controller;
 
 import abd.p1.bd.UserDAO;
 import abd.p1.model.Usuario;
-import java.sql.Timestamp;
-import java.util.List;
+
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 /**
  *

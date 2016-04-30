@@ -1,6 +1,5 @@
 package abd.p1.controller;
 
-import abd.p1.Tools;
 import abd.p1.model.Usuario;
 
 import javax.swing.*;
@@ -33,12 +32,7 @@ public class SelectedProfileController extends EditableProfileController {
     }
 
     public String calculateDistance() {
-        Double distance = Tools.calculateDistnaceBetweenPoints(
-                loggedUser.getLatitud(),
-                loggedUser.getLongitud(),
-                user.getLatitud(),
-                user.getLongitud()
-        );
+        Double distance = loggedUser.calculateDistnace(user.getLatitud(), user.getLongitud());
 
         Long rDistance = Math.round(distance);
         String mDistance = String.valueOf(rDistance);

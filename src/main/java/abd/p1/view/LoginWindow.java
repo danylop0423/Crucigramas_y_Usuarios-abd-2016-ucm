@@ -5,6 +5,7 @@
  */
 package abd.p1.view;
 
+import abd.p1.bd.HibernateUtils;
 import abd.p1.controller.EditableProfileController;
 import abd.p1.controller.LogInController;
 import abd.p1.controller.UsersController;
@@ -12,7 +13,8 @@ import abd.p1.model.Usuario;
 import abd.p1.view.profile.editable.EditableProfileWindow;
 
 import javax.swing.*;
-import java.sql.Timestamp;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -43,6 +45,14 @@ public class LoginWindow extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                windowClosingProcedure();
+            }
+        });
 
         jLabel1 = new javax.swing.JLabel();
         emailField = new javax.swing.JTextField();
@@ -135,6 +145,14 @@ public class LoginWindow extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void windowClosingProcedure() {
+        HibernateUtils.getSessionFactory().close();
+        this.setVisible(false);
+        this.dispose();
+        System.out.println("Bye!!!");
+        System.exit(0);
+    }
 
     private void passFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passFieldActionPerformed
         // TODO add your handling code here:

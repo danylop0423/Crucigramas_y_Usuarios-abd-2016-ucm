@@ -13,25 +13,19 @@ import abd.p1.model.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import java.awt.*;
 import java.util.List;
 
 
 public class UserDAO {
-    private SessionFactory factory;
+    private SessionFactory sf;
 
     public UserDAO(){
-        factory= buildSessionFactory();
+        this.sf = HibernateUtils.getSessionFactory();
      }
 
     public Usuario findById(String email) {
-        Usuario u = new Usuario();
-
-        Session s = factory.openSession();
+        Session s = sf.openSession();
         Transaction tr = s.beginTransaction();
         Usuario resultado = (Usuario) s.get(Usuario.class, email);
         tr.commit();
@@ -41,7 +35,7 @@ public class UserDAO {
     }
 
     public List<Usuario> findByName(String name) {
-        Session s = factory.openSession();
+        Session s = sf.openSession();
         Transaction tr = s.beginTransaction();
 
         List<Usuario> userList =
@@ -56,7 +50,7 @@ public class UserDAO {
     }
 
     public List<Usuario> findAll() {
-        Session s = factory.openSession();
+        Session s = sf.openSession();
         Transaction tr = s.beginTransaction();
         List<Usuario> userList = s.createQuery("from " + Usuario.class.getName()).list();
         tr.commit();
@@ -66,24 +60,10 @@ public class UserDAO {
     }
 
     public void saveOrUpdate(Usuario user) {
-        Session s = factory.openSession();
+        Session s = sf.openSession();
         Transaction tr = s.beginTransaction();
         s.saveOrUpdate(user);
         tr.commit();
         s.close();
     }
-
-//-----------------------------------------------
-	private static SessionFactory buildSessionFactory() {
-		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-		try {
-			return new MetadataSources(registry).buildMetadata().buildSessionFactory();
-		} catch (Exception e) {
-			e.printStackTrace();
-			StandardServiceRegistryBuilder.destroy(registry);
-			return null;
-		}
-	}
-//**************************************************
-
 }

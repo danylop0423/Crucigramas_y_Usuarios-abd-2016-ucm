@@ -256,5 +256,19 @@ public class Usuario {
        aficiones= afic;
     }
 
+	public double calculateDistnace(double lat, double lng) {
+		final int R = 6371000;
 
+		Double latDistance = Math.toRadians(lat - getLatitud());
+		Double lonDistance = Math.toRadians(lng - getLongitud());
+
+		Double a = Math.pow(Math.sin(latDistance / 2), 2) + Math.cos(Math.toRadians(lat))
+				* Math.cos(Math.toRadians(getLatitud())) * Math.pow(Math.sin(lonDistance / 2), 2);
+
+		Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+		Double distance = Math.pow(R * c, 2);
+
+		return Math.sqrt(distance);
+	}
 }
