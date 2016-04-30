@@ -16,9 +16,9 @@ import javax.swing.ImageIcon;
  */
 public class AvatarPanel extends javax.swing.JPanel {
     private static final int SIZE = 64;
-    private static final ImageIcon DEFAULT_ICON = 
+    private static final ImageIcon DEFAULT_ICON =
             new ImageIcon("./src/main/resources/defaultAvatar.jpg");
-    
+
     private ImageIcon icon;
     private Image rescaledIcon;
 
@@ -28,13 +28,13 @@ public class AvatarPanel extends javax.swing.JPanel {
     public AvatarPanel() {
         this(DEFAULT_ICON);
     }
-    
+
     public AvatarPanel(ImageIcon icon) {
         this.setPreferredSize(new Dimension(SIZE, SIZE));
-        this.icon = icon;
-        this.rescaledIcon = icon.getImage().getScaledInstance(SIZE, SIZE, Image.SCALE_DEFAULT);
+        this.icon = icon == null ? DEFAULT_ICON : icon;
+        this.rescaledIcon = this.icon.getImage().getScaledInstance(SIZE, SIZE, Image.SCALE_DEFAULT);
     }
-    
+
     public ImageIcon getIcon() {
         return icon;
     }
@@ -42,6 +42,7 @@ public class AvatarPanel extends javax.swing.JPanel {
     public void setIcon(ImageIcon icon) {
         this.icon = icon;
         this.rescaledIcon = icon.getImage().getScaledInstance(SIZE, SIZE, Image.SCALE_DEFAULT);
+        this.validate();
         this.repaint();
     }
 
@@ -50,7 +51,7 @@ public class AvatarPanel extends javax.swing.JPanel {
         super.paintComponent(g);
         g.drawImage(rescaledIcon, 0, 0, this);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
