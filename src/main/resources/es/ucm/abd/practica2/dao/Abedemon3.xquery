@@ -11,12 +11,13 @@ return
             <h1> { $especie/nombre } </h1>
             <img src="{ $especie/url }"/>
             <p>{ $especie/descripcion }</p>
-            <p><b>Tipos: </b> { string-join(data($especie/tipo), ", ") (: !! Separados por comas :)}</p>
+            <p><b>Tipos: </b> { string-join($especie/tipo, ", ") (: !! Separados por comas :)}</p>
             <p>
                 <b>Ataques: </b>
                 {
-                    for $ataque in $especie/ataques/tiene-ataque
-                    return $ataque (: Mostrar nombre de los ataques, añadir nueva consulta :)
+                    for $id_ataque in data($especie/ataques/tiene-ataque/@id)
+                    let $ataque := doc("Abedemon.xml")/bd-abedemon/ataque[@id = $id_ataque]
+                    return string-join($ataque/nombre, ", ") (: Mostrar nombre de los ataques, añadir nueva consulta :)
 
                 }
             </p>
