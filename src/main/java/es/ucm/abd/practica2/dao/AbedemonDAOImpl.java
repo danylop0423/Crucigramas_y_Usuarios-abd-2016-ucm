@@ -107,9 +107,19 @@ public class AbedemonDAOImpl implements AbedemonDAO {
      * @return Máximo daño que puede infligir el atacante.
      */
     @Override
-    public Integer getDamage(String idAttacker, String idReceiver) {
-        // TODO: Implementar (parte opcional)
-        System.err.println("getDamage() not implemented yet");
-        return null;
+    public Integer getDamage(String idAttacker, String idReceiver) throws XQException {
+        InputStream is = getClass().getResourceAsStream("Abedemon4.xquery");
+
+        XQConnection con = ds.getConnection();
+        XQPreparedExpression exp = con.prepareExpression(is);
+
+        exp.bindString(new QName("id"), idAttacker, null);
+        exp.bindString(new QName("adversario_id"), idReceiver, null);
+
+        XQResultSequence rs = exp.executeQuery();
+
+        rs.next();
+
+        return rs.getInt();
     }
 }
