@@ -1,6 +1,6 @@
 xquery version "3.0";
 
-declare variable $id as xs:string := "a0002";
+declare variable $id as xs:string external;
 
 
 for $especie in doc("Abedemon.xml")/bd-abedemon//especie[@id = $id]
