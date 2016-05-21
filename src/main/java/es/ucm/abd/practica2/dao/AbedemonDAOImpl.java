@@ -93,9 +93,11 @@ public class AbedemonDAOImpl implements AbedemonDAO {
 
         XQResultSequence rs = exp.executeQuery();
 
-        rs.next();
+        if (rs.next()) {
+            return rs.getItemAsString(null);
+        }
 
-        return rs.getItemAsString(null);
+        return null;
     }
 
     /**
@@ -118,8 +120,10 @@ public class AbedemonDAOImpl implements AbedemonDAO {
 
         XQResultSequence rs = exp.executeQuery();
 
-        rs.next();
+        if (rs.next()) {
+            return rs.getInt();
+        }
 
-        return rs.getInt();
+        return null;
     }
 }
