@@ -15,7 +15,7 @@ return
             <p>
                 <b>Ataques: </b>
                 {
-                    for $id_ataque in data($especie/ataques/tiene-ataque/@id)
+                    let $id_ataque := data($especie/ataques/tiene-ataque/@id)
                     let $ataque := doc("Abedemon.xml")/bd-abedemon/ataque[@id = $id_ataque]
                     return string-join($ataque/nombre, ", ") (: Mostrar nombre de los ataques, añadir nueva consulta :)
 
