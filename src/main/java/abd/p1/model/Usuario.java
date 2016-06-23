@@ -8,6 +8,8 @@ import java.util.*;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -31,10 +33,12 @@ public class Usuario {
 	private String nombre;
 
 	@Column(name="genero" , length=20, nullable= false )
-	private String genero;
-
+	@Enumerated(EnumType.STRING)
+	private GeneroEnum genero;
+	
 	@Column(name="genero_buscado" , length=20, nullable= false )
-	private String genero_buscado;
+	@Enumerated(EnumType.STRING)
+	private GeneroEnum genero_buscado;
 
 	@Column(name="fecha_nacimiento" , nullable=true )
 	@Temporal(TemporalType.DATE)
@@ -77,8 +81,10 @@ public class Usuario {
 		this.email = email;
 		this.password = password;
 		this.nombre = nombre;
-		this.genero = genero;
-		this.genero_buscado = genero_buscado;
+		if(genero=="MASCULINO" || genero=="masculino")
+			this.genero = GeneroEnum.MASCULINO;
+		if(genero=="FEMENINO" || genero=="femenino")
+			this.genero = GeneroEnum.FEMENINO;
 		this.fecha_nac = fecha_nac;
 		this.foto = foto;
 		this.descripcion = descripcion;
@@ -119,19 +125,29 @@ public class Usuario {
 	}
 
 	public String getGenero() {
-		return genero;
+		return genero.toString();
 	}
 
 	public void setGenero(String genero) {
-		this.genero = genero;
+		if(genero=="MASCULINO" || genero=="masculino")
+		this.genero = GeneroEnum.MASCULINO;
+	    if(genero=="FEMENINO" || genero=="femenino")
+		this.genero = GeneroEnum.FEMENINO;
+	    else
+	    this.genero = GeneroEnum.FEMENINO;	
 	}
 
 	public String getGenero_buscado() {
-		return genero_buscado;
+		return genero_buscado.toString();
 	}
 
 	public void setGenero_buscado(String genero_buscado) {
-		this.genero_buscado = genero_buscado;
+		if(genero_buscado=="MASCULINO" || genero_buscado=="masculino")
+			this.genero_buscado = GeneroEnum.MASCULINO;
+		    if(genero_buscado=="FEMENINO" || genero_buscado=="femenino")
+			this.genero_buscado = GeneroEnum.FEMENINO;
+		    else
+		    this.genero_buscado = GeneroEnum.FEMENINO;
 	}
 
 	public Date getFecha_nac() {

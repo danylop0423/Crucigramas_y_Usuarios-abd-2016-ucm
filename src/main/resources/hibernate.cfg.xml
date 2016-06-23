@@ -3,7 +3,7 @@
 <hibernate-configuration>
   <session-factory>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="connection.url">jdbc:mysql://localhost/practica1user_712</property>
+    <property name="connection.url">jdbc:mysql://localhost/Practica_712</property>
     <property name="connection.username">P1</property>
     <property name="connection.password">PasswordP1</property>
     <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
